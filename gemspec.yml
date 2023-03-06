@@ -1,0 +1,35 @@
+name: ronin-nmap
+summary: A Ruby library for working with nmap.
+description: |
+  ronin-nmap is a Ruby library for working with nmap. ronin-nmap can parse
+  nmap XML, convert nmap XML into JSON or CSV, or import nmap XML into the
+  ronin-db database.
+
+license: LGPL-3.0
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: https://ronin-rb.dev/
+has_yard: true
+
+metadata:
+  documentation_uri: https://ronin-rb.dev/docs/ronin-nmap
+  source_code_uri:   https://github.com/ronin-rb/ronin-nmap
+  bug_tracker_uri:   https://github.com/ronin-rb/ronin-nmap/issues
+  changelog_uri:     https://github.com/ronin-rb/ronin-nmap/blob/main/ChangeLog.md
+  rubygems_mfa_required: 'true'
+
+generated_files:
+ - man/ronin-nmap.1
+ - man/ronin-nmap-convert.1
+ - man/ronin-nmap-import.1
+
+required_ruby_version: ">= 3.0.0"
+
+dependencies:
+  ruby-nmap: ~> 1.0
+  # Ronin dependencies:
+  ronin-core: ~> 0.1
+  ronin-db: ~> 0.1
+
+development_dependencies:
+  bundler: ~> 2.0
