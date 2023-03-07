@@ -59,6 +59,8 @@ module Ronin
       #   An imported IP address, MAC address, host name, or open port.
       #
       # @return [Array<Ronin::DB::IPAddress>]
+      #   If no block was given, then an Array of imported IP addresses will
+      #   be returned.
       #
       def self.import_file(path,&block)
         import(::Nmap::XML.open(path),&block)
@@ -82,15 +84,15 @@ module Ronin
       #   An imported IP address, MAC address, host name, or open port.
       #
       # @return [Array<Ronin::DB::IPAddress>]
+      #   If no block was given, then an Array of imported IP addresses will
+      #   be returned.
       #
       def self.import(xml,&block)
-        imported_ip_addresses = []
+        return enum_for(__method__,xml).to_a unless block
 
         xml.each_up_host do |host|
-          imported_ip_addresses.concat(import_host(host,&block))
+          import_host(host,&block)
         end
-
-        return imported_ip_addresses
       end
 
       #
