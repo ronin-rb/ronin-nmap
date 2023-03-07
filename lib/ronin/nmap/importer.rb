@@ -157,15 +157,13 @@ module Ronin
       def self.import_open_port(imported_ip_address,
                                 imported_port,
                                 imported_service)
-        imported_open_port = nil
-
-        DB::OpenPort.transaction do
-          imported_open_port = DB::OpenPort.find_or_create_by(
-            ip_address: imported_ip_address,
-            port:       imported_port,
-            service:    imported_service
-          )
-        end
+        imported_open_port = DB::OpenPort.transaction do
+                               DB::OpenPort.find_or_create_by(
+                                 ip_address: imported_ip_address,
+                                 port:       imported_port,
+                                 service:    imported_service
+                               )
+                             end
 
         yield imported_open_port if block_given?
         return imported_open_port
