@@ -31,18 +31,18 @@ module Ronin
         #
         # Converts an nmap `.xml` file to a `.csv` file.
         #
-        # @param [String] input_file
+        # @param [String] src
         #   The input `.xml` file path.
         #
-        # @param [String] output_file
+        # @param [String] dest
         #   The output file path.
         #
         # @api public
         #
-        def self.convert_file(input_file,output_file)
-          xml = ::Nmap::XML.open(input_file)
+        def self.convert_file(src,dest)
+          xml = ::Nmap::XML.open(src)
 
-          File.open(output_file,'w') do |output|
+          File.open(dest,'w') do |output|
             xml_to_csv(xml,output)
           end
         end
