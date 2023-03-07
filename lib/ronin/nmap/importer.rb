@@ -221,19 +221,17 @@ module Ronin
       # @return [(Array<Ronin::DB::IPAddress>, Array<Ronin::DB::MACAddress>)]
       #   The imported IP addresses and MAC addresses.
       #
-      def self.import_addresses(host)
+      def self.import_addresses(host,&block)
         imported_ip_addresses  = []
         imported_mac_addresses = []
 
         host.each_address do |address|
-          case (imported_address = import_address(address))
+          case (imported_address = import_address(address,&block))
           when DB::IPAddress
             imported_ip_addresses << imported_address
           when DB::MACAddress
             imported_mac_addresses << imported_address
           end
-
-          yield imported_address if block_given?
         end
 
         # associate any imported MAC addresses with the imported IP addresses
@@ -257,13 +255,19 @@ module Ronin
       # @param [::Nmap::XML::Address] address
       #   The nmap XML address object.
       #
+      # @yield [imported]
+      #   If a block is given, it will be passed the imported address.
+      #
+      # @yieldparam [Ronin::DB::IPAddress, Ronin::DB::MACAddress] imported
+      #   The imported IP address or MAC address record.
+      #
       # @return [Ronin::DB::IPAddress, Ronin::DB::MACAddress]
       #   The imported IP address or MAC address.
       #
-      def self.import_address(address)
+      def self.import_address(address,&block)
         case address.type
-        when :ipv4, :ipv6 then import_ip_address(address)
-        when :mac         then import_mac_address(address)
+        when :ipv4, :ipv6 then import_ip_address(address,&block)
+        when :mac         then import_mac_address(address,&block)
         end
       end
 
@@ -279,16 +283,25 @@ module Ronin
       # @param [::Nmap::XML::Address] address
       #   The nmap XML IP address object.
       #
+      # @yield [imported]
+      #   If a block is given, it will be passed the imported IP address.
+      #
+      # @yieldparam [Ronin::DB::IPAddress] imported
+      #   The imported IP address record.
+      #
       # @return [Ronin::DB::IPAddress]
       #   The imported IP address.
       #
-      def self.import_ip_address(address)
-        DB::IPAddress.transaction do
-          DB::IPAddress.find_or_create_by(
-            version: IP_VERSIONS.fetch(address.type),
-            address: address.addr
-          )
-        end
+      def self.import_ip_address(address,&block)
+        imported_ip_address = DB::IPAddress.transaction do
+                                DB::IPAddress.find_or_create_by(
+                                  version: IP_VERSIONS.fetch(address.type),
+                                  address: address.addr
+                                )
+                              end
+
+        yield imported_ip_address if block_given?
+        return imported_ip_address
       end
 
       #
@@ -297,13 +310,23 @@ module Ronin
       # @param [::Nmap::XML::Address] address
       #   The nmap XML MAC address object.
       #
+      # @yield [imported]
+      #   If a block is given, it will be passed the imported MAC address
+      #   reocrd.
+      #
+      # @yieldparam [Ronin::DB::MACAddress] imported
+      #   The imported MAC address record.
+      #
       # @return [Ronin::DB::MACAddress]
       #   The imported MAC address.
       #
-      def self.import_mac_address(address)
-        DB::MACAddress.transaction do
-          DB::MACAddress.find_or_import(address.addr)
-        end
+      def self.import_mac_address(address,&block)
+        imported_mac_address = DB::MACAddress.transaction do
+                                 DB::MACAddress.find_or_import(address.addr)
+                               end
+
+        yield imported_mac_address if block_given?
+        return imported_mac_address
       end
 
       #
