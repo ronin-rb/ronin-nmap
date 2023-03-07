@@ -96,7 +96,7 @@ module Ronin
         end
 
         # Mapping of output file extensions to output formats.
-        FILE_FORMATS = {
+        OUTPUT_FILE_FORMATS = {
           '.json' => :json,
           '.csv'  => :csv
         }
@@ -111,7 +111,7 @@ module Ronin
         #   The conversion format.
         #
         def infer_format_from(output_path)
-          FORMAT_EXTS.fetch(File.extname(output_path))
+          OUTPUT_FILE_FORMATS.fetch(File.extname(output_path))
         end
       end
     end
