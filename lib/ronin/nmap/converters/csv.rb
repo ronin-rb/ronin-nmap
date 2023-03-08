@@ -18,7 +18,6 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'nmap/xml'
 require 'csv'
 
 module Ronin
@@ -28,25 +27,6 @@ module Ronin
       # Handles converting nmap XML into CSV.
       #
       module CSV
-        #
-        # Converts an nmap `.xml` file to a `.csv` file.
-        #
-        # @param [String] src
-        #   The input `.xml` file path.
-        #
-        # @param [String] dest
-        #   The output file path.
-        #
-        # @api public
-        #
-        def self.convert_file(src,dest)
-          xml = ::Nmap::XML.open(src)
-
-          File.open(dest,'w') do |output|
-            xml_to_csv(xml,output)
-          end
-        end
-
         #
         # Converts parsed nmap XML into CSV.
         #

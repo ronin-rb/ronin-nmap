@@ -20,3 +20,35 @@
 
 require 'ronin/nmap/converters/json'
 require 'ronin/nmap/converters/csv'
+
+module Ronin
+  module Nmap
+    #
+    # @api private
+    #
+    module Converters
+      # Mapping of formats to converter modules.
+      FORMATS = {
+        json: JSON,
+        csv:  CSV
+      }
+
+      #
+      # Fetches the converter for the given format.
+      #
+      # @param [:json, :csv] format
+      #
+      # @return [Converters::JSON, Converters::CSV]
+      #   The converter module.
+      #
+      # @raise [ArgumentError]
+      #   The given format is unsupported.
+      #
+      def self.[](format)
+        FORMATS.fetch(format) do
+          raise(ArgumentError,"unsupported format: #{format.inspect}")
+        end
+      end
+    end
+  end
+end

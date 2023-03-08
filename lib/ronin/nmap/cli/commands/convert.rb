@@ -19,7 +19,7 @@
 #
 
 require 'ronin/nmap/cli/command'
-require 'ronin/nmap/cli/convertable'
+require 'ronin/nmap/convert'
 
 module Ronin
   module Nmap
@@ -43,8 +43,6 @@ module Ronin
         #     OUTPUT_FILE                      The output file
         #
         class Convert < Command
-
-          include Convertable
 
           usage '[--format json|csv] XML_FILE [OUTPUT_FILE]'
 
@@ -70,12 +68,6 @@ module Ronin
           # @return [:json, :csv, nil]
           attr_reader :format
 
-          # Mapping of output formats to converter modules.
-          CONVERTERS = {
-            json: Converters::JSON,
-            csv:  Converters::CSV
-          }
-
           #
           # Runs the `ronin-nmap convert` command.
           #
@@ -92,16 +84,20 @@ module Ronin
             end
 
             if output_file
-              format = options.fetch(:format) { infer_format_from(output_file) }
-
-              convert_file(xml_file,output_file, format: format)
+              if (format = options[:format])
+                Nmap::Convert.convert_file(xml_file,output_file, format: format)
+              else
+                Nmap::Convert.convert_file(xml_file,output_file)
+              end
             else
               unless (format = options[:format])
                 print_error "must specify a --format if no output file is given"
                 exit(-1)
               end
 
-              convert(xml_file,stdout, format: format)
+              xml = ::Nmap::XML.open(xml_file)
+
+              Nmap::Convert.convert(xml,stdout, format: format)
             end
           end
 
