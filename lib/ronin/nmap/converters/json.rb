@@ -92,13 +92,13 @@ module Ronin
         #
         def self.xml_as_json(xml)
           hash = {
-            scanner:    scanner_as_json(xml.scanner),
-            version:    xml.version,
-            scan_info:  xml.scan_info.map(&method(:scan_info_as_json)),
-            run_stats:  xml.each_run_stat.map(&method(:run_stat_as_json)),
-            verbose:    xml.verbose,
-            debugging:  xml.debugging,
-            tasks:      xml.each_task.map(&method(:scan_task_as_json))
+            scanner:   scanner_as_json(xml.scanner),
+            version:   xml.version,
+            scan_info: xml.scan_info.map(&method(:scan_info_as_json)),
+            run_stats: xml.each_run_stat.map(&method(:run_stat_as_json)),
+            verbose:   xml.verbose,
+            debugging: xml.debugging,
+            tasks:     xml.each_task.map(&method(:scan_task_as_json))
           }
 
           if xml.prescript
