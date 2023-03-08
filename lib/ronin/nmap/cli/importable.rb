@@ -19,6 +19,8 @@
 #
 
 require 'ronin/nmap/importer'
+require 'ronin/db/cli/database_options'
+require 'ronin/db/cli/printing'
 require 'ronin/core/cli/logging'
 
 module Ronin
@@ -31,7 +33,19 @@ module Ronin
       # [ronin-db]: https://github.com/ronin-rb/ronin-db#readme
       #
       module Importable
+        include DB::CLI::Printing
         include Core::CLI::Logging
+
+        #
+        # Includes `Ronin::DB::CLI::DatabaseOptions` into the including command
+        # class.
+        #
+        # @param [Class<Command>] command
+        #   The command class including {Importable}.
+        #
+        def self.included(command)
+          command.include DB::CLI::DatabaseOptions
+        end
 
         #
         # Imports an nmap `.xml` file into the [ronin-db] database.
@@ -46,30 +60,6 @@ module Ronin
             if (type = record_type(record))
               log_info "Imported #{type}: #{record}"
             end
-          end
-        end
-
-        #
-        # Maps a record to a human readable display name.
-        #
-        # @param [Ronin::DB::IPAddress,
-        #         Ronin::DB::MACAddress,
-        #         Ronin::DB::HostName,
-        #         Ronin::DB::Port,
-        #         Ronin::DB::Service,
-        #         Ronin::DB::OpenPort] record
-        #
-        # @return [String, nil]
-        #   The human readable type or `nil` if the record model is unknown.
-        #
-        def record_type(record)
-          case record
-          when Ronin::DB::HostName   then 'host'
-          when Ronin::DB::IPAddress  then 'IP'
-          when Ronin::DB::MACAddress then 'MAC'
-          when Ronin::DB::Port       then 'port'
-          when Ronin::DB::Service    then 'service'
-          when Ronin::DB::OpenPort   then 'open port'
           end
         end
       end

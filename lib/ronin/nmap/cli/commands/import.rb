@@ -20,6 +20,7 @@
 
 require 'ronin/nmap/cli/command'
 require 'ronin/nmap/cli/importable'
+require 'ronin/nmap/importer'
 
 module Ronin
   module Nmap
@@ -34,6 +35,8 @@ module Ronin
         #
         # ## Options
         #
+        #         --db NAME                    The database to connect to (Default: default)
+        #         --db-uri URI                 The database URI to connect to
         #     -h, --help                       Print help information
         #
         # ## Arguments
@@ -63,11 +66,7 @@ module Ronin
               exit(1)
             end
 
-            require 'ronin/db'
-            require 'ronin/nmap/importer'
-
-            DB.connect
-
+            db_connect
             import_file(xml_file)
           end
 
