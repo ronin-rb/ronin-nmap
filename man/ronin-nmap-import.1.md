@@ -15,6 +15,13 @@ Imports the nmap XML file data into the Ronin database.
 
 ## OPTIONS
 
+`--db` *NAME*
+  The database name to connect to. Defaults to `default` if not given.
+
+`--db-uri` *URI*
+  The explicit database URI to connect to
+  (ex: `postgres://user:password@host/db`).
+
 `-h`, `--help`
   Print help information
 
