@@ -61,7 +61,7 @@ $ ronin-nmap convert scan.xml scan.json
 * [Ruby] >= 3.0.0
 * [ruby-nmap] ~> 1.0
 * [ronin-core] ~> 0.1
-* [ronin-db] ~> 0.1
+* [ronin-db] ~> 0.2
 
 ## Install
 
