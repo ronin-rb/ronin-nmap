@@ -6,8 +6,7 @@
 
 ## DESCRIPTION
 
-Queries ASN information for the given *IP* or searches for the ASN records for
-the given *NUMBER*, *NAME*, or *COUNTRY* code.
+Imports the nmap XML file data into the Ronin database.
 
 ## ARGUMENTS
 
