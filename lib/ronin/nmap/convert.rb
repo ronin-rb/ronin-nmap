@@ -66,6 +66,12 @@ module Ronin
       #
       # Converts parsed nmap XML into the desired format.
       #
+      # @param [::Nmap::XML] xml
+      #   The nmap XML to convert.
+      #
+      # @param [IO, String, nil] output
+      #   Optional output to write the converted output to.
+      #
       # @param [:json, :csv] format
       #   The desired convert to convert the parsed nmap XML to.
       #
