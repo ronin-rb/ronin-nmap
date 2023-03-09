@@ -93,6 +93,9 @@ module Ronin
       # @return [:json, :csv]
       #   The conversion format.
       #
+      # @raise [ArgumentError]
+      #   The format could not be inferred from the path's file extension.
+      #
       # @api private
       #
       def self.infer_format_for(path)
