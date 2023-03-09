@@ -31,7 +31,8 @@ module Ronin
     class CLI
       module Commands
         #
-        # The `ronin-nmap scan` command.
+        # Runs nmap and outputs data as JSON or CSV or imports into the
+        # database.
         #
         # ## Usage
         #
