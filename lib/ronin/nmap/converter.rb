@@ -34,7 +34,7 @@ module Ronin
     #
     # @api public
     #
-    module Convert
+    module Converter
       # Mapping of file extension names to formats.
       #
       # @api private

@@ -19,7 +19,7 @@
 #
 
 require 'ronin/nmap/cli/command'
-require 'ronin/nmap/convert'
+require 'ronin/nmap/converter'
 
 module Ronin
   module Nmap
@@ -85,9 +85,9 @@ module Ronin
 
             if output_file
               if (format = options[:format])
-                Nmap::Convert.convert_file(xml_file,output_file, format: format)
+                Converter.convert_file(xml_file,output_file, format: format)
               else
-                Nmap::Convert.convert_file(xml_file,output_file)
+                Converter.convert_file(xml_file,output_file)
               end
             else
               unless (format = options[:format])
@@ -97,7 +97,7 @@ module Ronin
 
               xml = ::Nmap::XML.open(xml_file)
 
-              Nmap::Convert.convert(xml,stdout, format: format)
+              Converter.convert(xml,stdout, format: format)
             end
           end
 
