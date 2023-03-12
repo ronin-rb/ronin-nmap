@@ -19,3 +19,144 @@
 #
 
 require 'ronin/nmap/importer'
+require 'nmap/command'
+require 'nmap/xml'
+
+require 'tempfile'
+
+module Ronin
+  module Nmap
+    #
+    # Runs `nmap` and parses the XML output.
+    #
+    # @param [Hash{Symbol => Object}, Boolean, nil] sudo
+    #   Controls whether the `nmap` command should be ran under `sudo`.
+    #   If the `sudo:` keyword argument is not given, then `nmap` will
+    #   automatically be ran under `sudo` if `sync_scan`, `ack_scan`,
+    #   `window_scan`, `maimon_scan`, `null_scan`, `fin_scan`, `xmas_scan`,
+    #   `scan_flags`, `os_fingerprint`, or `traceroute` are enabled.
+    #
+    # @option sudo [Boolean] :askpass
+    #   Enables the `--askpass` `sudo` option.
+    #
+    # @option sudo [Boolean] :background
+    #   Enables the `--background` `sudo` option
+    #
+    # @option sudo [Boolean] :bell
+    #   Enables the `--bell` `sudo` option
+    #
+    # @option sudo [Integer] :close_from
+    #   Enables the `--close-from=...` `sudo` option
+    #
+    # @option sudo [String] :chdir
+    #   Enables the `--chdir=...` `sudo` option
+    #
+    # @option sudo [String] :preserve_env
+    #   Enables the `--preseve-env=...` `sudo` option
+    #
+    # @option sudo [String, Boolean] :group
+    #   Enables the `--preseve-env=...` `sudo` option
+    #
+    # @option sudo [Boolean] :set_home
+    #   Enables the `--set-home` `sudo` option
+    #
+    # @option sudo [String] :host
+    #   Enables the `--host=...` `sudo` option
+    #
+    # @option sudo [Boolean] :login
+    #   Enables the `--login` `sudo` option
+    #
+    # @option sudo [Boolean] :remove_timestamp
+    #   Enables the `--remove-timestamp` `sudo` option
+    #
+    # @option sudo [Boolean] :reset_timestamp
+    #   Enables the `--reset-timestamp` `sudo` option
+    #
+    # @option sudo [Boolean] :non_interactive
+    #   Enables the `--non-interactive` `sudo` option
+    #
+    # @option sudo [Boolean] :preserve_groups
+    #   Enables the `--preserve-groups` `sudo` option
+    #
+    # @option sudo [String] :prompt
+    #   Enables the `--prompt=...` `sudo` option
+    #
+    # @option sudo [String] :chroot
+    #   Enables the `--chroot=...` `sudo` option
+    #
+    # @option sudo [String] :role
+    #   Enables the `--role=...` `sudo` option
+    #
+    # @option sudo [Boolean] :stdin
+    #   Enables the `--stdin` `sudo` option
+    #
+    # @option sudo [Boolean] :shell
+    #   Enables the `--shell` `sudo` option
+    #
+    # @option sudo [String] :type
+    #   Enables the `--type=...` `sudo` option
+    #
+    # @option sudo [Integer] :command_timeout
+    #   Enables the `--command-timeout=...` `sudo` option
+    #
+    # @option sudo [String] :other_user
+    #   Enables the `--other-user=...` `sudo` option
+    #
+    # @option sudo [String] :user
+    #   Enables the `--user=...` `sudo` option
+    #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments for `nmap`.
+    #
+    # @yield [nmap]
+    #   If a block is given, it will be passed the new `nmap` command object
+    #   for additional configuration.
+    #
+    # @yieldparam [::Nmap::Command] nmap
+    #   The `nmap` command object.
+    #
+    # @return [::Nmap::XML]
+    #   The parsed nmap XML data.
+    #
+    # @example
+    #   xml = Nmap.scan(syn_scan: true, ports: [80, 443], targets: '192.168.1.*')
+    #   # => #<Nmap::XML: ...>
+    #   xml.hosts
+    #   # => [#<Nmap::XML::Host: 192.168.1.1>, ...]
+    #
+    # @see https://rubydoc.info/gems/ruby-nmap/Nmap/Command
+    # @see https://rubydoc.info/gems/ruby-nmap/Nmap/XML
+    #
+    # @api public
+    #
+    def self.scan(sudo: nil, **kwargs,&block)
+      nmap = ::Nmap::Command.new(**kwargs,&block)
+
+      tempfile = Tempfile.new(['ronin-nmap','.xml'])
+      nmap.output_xml ||= tempfile.path
+
+      sudo ||= nmap.syn_scan ||
+               nmap.ack_scan ||
+               nmap.window_scan ||
+               nmap.maimon_scan ||
+               nmap.null_scan ||
+               nmap.fin_scan ||
+               nmap.xmas_scan ||
+               nmap.scan_flags ||
+               nmap.ip_scan ||
+               nmap.os_fingerprint ||
+               nmap.traceroute
+
+      # run the nmap command
+      case sudo
+      when Hash       then nmap.sudo_command(**sudo)
+      when true       then nmap.sudo_command
+      when false, nil then nmap.run_command
+      else
+        raise(ArgumentError,"sudo keyword must be a Hash, true, false, or nil")
+      end
+
+      return ::Nmap::XML.open(nmap.output_xml)
+    end
+  end
+end
