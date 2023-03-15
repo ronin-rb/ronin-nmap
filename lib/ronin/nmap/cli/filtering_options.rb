@@ -187,6 +187,10 @@ module Ronin
             targets = filter_targets_by_scripts(targets)
           end
 
+          unless @with_scripts.empty?
+            targets = filter_targets_by_script(targets)
+          end
+
           unless @with_script_output.empty?
             targets = filter_targets_by_script_output(targets)
           end
