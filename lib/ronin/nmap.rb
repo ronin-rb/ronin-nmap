@@ -19,15 +19,25 @@
 #
 
 require 'ronin/nmap/importer'
+require 'ronin/core/home'
 require 'nmap/command'
 require 'nmap/xml'
 
 require 'tempfile'
+require 'fileutils'
 
 module Ronin
   module Nmap
+    # The `~/.cache/ronin-nmap` cache directory.
+    #
+    # @api private
+    CACHE_DIR = Core::Home.cache_dir('ronin-nmap')
+
     #
     # Runs `nmap` and parses the XML output.
+    #
+    # @param [Array<#to_s>] targets
+    #   The targets to scan.
     #
     # @param [Hash{Symbol => Object}, Boolean, nil] sudo
     #   Controls whether the `nmap` command should be ran under `sudo`.
@@ -115,13 +125,15 @@ module Ronin
     # @yieldparam [::Nmap::Command] nmap
     #   The `nmap` command object.
     #
-    # @return [::Nmap::XML]
-    #   The parsed nmap XML data.
+    # @return [::Nmap::XML, false, nil]
+    #   If the `nmap` command was sucessful, the parsed nmap XML data will be
+    #   returned. If the `nmap` command failed then `false` will be returned.
+    #   If `nmap` is not installed, then `nil` is returned.
     #
     # @example
-    #   xml = Nmap.scan(syn_scan: true, ports: [80, 443], targets: '192.168.1.*')
+    #   xml = Nmap.scan('192.168.1.*', syn_scan: true, ports: [80, 443])
     #   # => #<Nmap::XML: ...>
-    #   xml.hosts
+    #   xml.up_hosts
     #   # => [#<Nmap::XML::Host: 192.168.1.1>, ...]
     #
     # @see https://rubydoc.info/gems/ruby-nmap/Nmap/Command
@@ -129,11 +141,19 @@ module Ronin
     #
     # @api public
     #
-    def self.scan(sudo: nil, **kwargs,&block)
-      nmap = ::Nmap::Command.new(**kwargs,&block)
+    def self.scan(*targets, sudo: nil, **kwargs,&block)
+      if targets.empty?
+        raise(ArgumentError,"must specify at least one target")
+      end
 
-      tempfile = Tempfile.new(['ronin-nmap','.xml'])
-      nmap.output_xml ||= tempfile.path
+      nmap = ::Nmap::Command.new(targets: targets, **kwargs,&block)
+
+      unless nmap.output_xml
+        FileUtils.mkdir_p(CACHE_DIR)
+        tempfile = Tempfile.new(['nmap','.xml'], CACHE_DIR)
+
+        nmap.output_xml = tempfile.path
+      end
 
       sudo ||= nmap.syn_scan ||
                nmap.ack_scan ||
@@ -148,15 +168,19 @@ module Ronin
                nmap.traceroute
 
       # run the nmap command
-      case sudo
-      when Hash       then nmap.sudo_command(**sudo)
-      when true       then nmap.sudo_command
-      when false, nil then nmap.run_command
-      else
-        raise(ArgumentError,"sudo keyword must be a Hash, true, false, or nil")
-      end
+      status = case sudo
+               when Hash       then nmap.sudo_command(**sudo)
+               when true       then nmap.sudo_command
+               when false, nil then nmap.run_command
+               else
+                 raise(ArgumentError,"sudo keyword must be a Hash, true, false, or nil")
+               end
 
-      return ::Nmap::XML.open(nmap.output_xml)
+      # if the command was successful, return the parsed XML,
+      # otherwise return the `false` or `nil` status.
+      if status then ::Nmap::XML.open(nmap.output_xml)
+      else           status
+      end
     end
   end
 end
