@@ -27,6 +27,9 @@ require 'tempfile'
 require 'fileutils'
 
 module Ronin
+  #
+  # Namespace for the `ronin-nmap` library.
+  #
   module Nmap
     # The `~/.cache/ronin-nmap` cache directory.
     #

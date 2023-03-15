@@ -23,6 +23,9 @@ require 'ronin/nmap/cli/port_list'
 module Ronin
   module Nmap
     class CLI
+      #
+      # Mixin which adds nmap target filtering options to commands.
+      #
       module FilteringOptions
         #
         # Adds filtering options to the command class including
