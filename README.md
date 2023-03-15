@@ -56,6 +56,20 @@ Convert an nmap XML scan file to JSON:
 $ ronin-nmap convert scan.xml scan.json
 ```
 
+## Examples
+
+```ruby
+require 'ronin/nmap'
+
+xml = Ronin::Nmap.scan(syn_scan: true, ports: [80, 443], targets: '192.168.1.*')
+# => #<Nmap::XML: ...>
+xml.hosts
+# => [#<Nmap::XML::Host: 192.168.1.1>, ...]
+
+host = xml.hosts.first
+host.open_ports
+```
+
 ## Requirements
 
 * [Ruby] >= 3.0.0
