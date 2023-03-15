@@ -323,7 +323,7 @@ module Ronin
         def filter_targets_by_script(targets)
           targets.filter do |host|
             host.each_open_port.any? do |port|
-              !(port.scripts.keys & @with_scripts).empty?
+              @with_scripts.intersect?(port.scripts.keys)
             end
           end
         end
