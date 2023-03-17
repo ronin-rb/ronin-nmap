@@ -62,7 +62,7 @@ Converts an nmap `.xml` file into a list of targets.
   Filters targets that have NSE script output that matches the regular
   expression.
 
-`--ports` {*PORT* | *PORT1-PORT2*},...
+`-p`, `--ports` {*PORT* | *PORT1-PORT2*},...
   Filter `IP:PORT` or `HOST:PORT` pairs who's ports are in the gvien port list.
   The port list is a comma separated list of port numbers (`443`) or port
   ranges (`8000-9000`).

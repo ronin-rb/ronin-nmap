@@ -52,7 +52,7 @@ module Ronin
         #         --with-script SCRIPT[,...]   Filters targets with the script
         #         --with-script-output STRING  Filters targets containing the script output
         #         --with-script-regex /REGEX/  Filters targets containing the script output
-        #         --ports {PORT | PORT1-PORT2},...
+        #         -p, --ports {PORT | PORT1-PORT2},...
         #                                      Filter targets by port numbers
         #         --services SERVICE[,...]     Filters targets by service
         #     -h, --help                       Print help information
@@ -95,7 +95,8 @@ module Ronin
 
           include FilteringOptions
 
-          option :ports, value: {
+          option :ports, shorts: '-p',
+                         value: {
                            type: /\A(?:\d+|\d+-\d+)(?:,(?:\d+|\d+-\d+))*\z/,
                            usage: '{PORT | PORT1-PORT2},...'
                          },
