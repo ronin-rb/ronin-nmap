@@ -100,14 +100,15 @@ module Ronin
           #
           # @param [Array<String>] nmap_args
           def run(*nmap_args)
-            output        = options[:output]
-            output_format = options.fetch(:output_format) do
-                              infer_output_format(output)
-                            end
+            if (output = options[:output])
+              output_format = options.fetch(:output_format) do
+                                infer_output_format(output)
+                              end
 
-            if output && output_format.nil?
-              print_error "cannot infer the output format of the output file (#{output.inspect}), please specify --output-format"
-              exit(1)
+              if output_format.nil?
+                print_error "cannot infer the output format of the output file (#{output.inspect}), please specify --output-format"
+                exit(1)
+              end
             end
 
             tempfile = Tempfile.new(['ronin-nmap', '.xml'])
