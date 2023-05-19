@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`ronin-nmap scan` [options] *nmap_options* ...
+`ronin-nmap scan` [options] `--` *nmap_options* ...
 
 ## DESCRIPTION
 
