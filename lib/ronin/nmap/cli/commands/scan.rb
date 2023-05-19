@@ -20,7 +20,7 @@
 
 require 'ronin/nmap/cli/command'
 require 'ronin/nmap/cli/importable'
-require 'ronin/nmap/convert'
+require 'ronin/nmap/converter'
 require 'ronin/core/cli/logging'
 
 require 'tempfile'
@@ -189,7 +189,7 @@ module Ronin
               FileUtils.cp(path,output)
             else
               # the format has been explicitly specified
-              Nmap::Convert.convert_file(path,output, format: format)
+              Nmap::Converter.convert_file(path,output, format: format)
             end
           end
 
