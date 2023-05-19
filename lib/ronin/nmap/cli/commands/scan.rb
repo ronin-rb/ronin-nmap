@@ -165,7 +165,7 @@ module Ronin
               end
             end
 
-            nmap_command = ['nmap', *nmap_args, '-oX', output]
+            nmap_command = ['nmap', '-v', *nmap_args, '-oX', output]
             nmap_command.unshift('sudo') if sudo
 
             return system(*nmap_command)
