@@ -95,7 +95,7 @@ module Ronin
 
           include FilteringOptions
 
-          option :ports, shorts: '-p',
+          option :ports, short: '-p',
                          value: {
                            type: /\A(?:\d+|\d+-\d+)(?:,(?:\d+|\d+-\d+))*\z/,
                            usage: '{PORT | PORT1-PORT2},...'
