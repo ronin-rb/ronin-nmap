@@ -26,6 +26,25 @@ database.
 
 ## Synopsis
 
+```
+Usage: ronin-nmap [options]
+
+Options:
+    -V, --version                    Prints the version and exits
+    -h, --help                       Print help information
+
+Arguments:
+    [COMMAND]                        The command name to run
+    [ARGS ...]                       Additional arguments for the command
+
+Commands:
+    convert
+    help
+    import
+    scan
+    targets
+```
+
 Import an nmap XML scan file into [ronin-db]\:
 
 ```shell
