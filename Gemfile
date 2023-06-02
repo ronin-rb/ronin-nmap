@@ -11,9 +11,9 @@ end
 # gem 'ruby-nmap', '~> 1.0', github: 'postmodern/ruby-nmap'
 
 # Ronin dependencies
-# gem 'ronin-core',     '~> 0.1', github: "ronin-rb/ronin-core",
+# gem 'ronin-core',     '~> 0.1', github: 'ronin-rb/ronin-core',
 #                                 branch: 'main'
-gem 'ronin-db', '~> 0.2', github: "ronin-rb/ronin-db",
+gem 'ronin-db', '~> 0.2', github: 'ronin-rb/ronin-db',
                           branch: '0.2.0'
 
 group :development do
