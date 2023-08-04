@@ -110,6 +110,7 @@ host.open_ports
 ## Requirements
 
 * [Ruby] >= 3.0.0
+* [nmap] >= 5.00
 * [ruby-nmap] ~> 1.0
 * [ronin-core] ~> 0.2
 * [ronin-db] ~> 0.2
@@ -161,6 +162,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
+[nmap]: http://www.insecure.org/
 [ruby-nmap]: https://github.com/postmodern/ruby-nmap#readme
 [ronin-core]: https://github.com/ronin-rb/ronin-core#readme
 [ronin-db]: https://github.com/ronin-rb/ronin-db#readme
