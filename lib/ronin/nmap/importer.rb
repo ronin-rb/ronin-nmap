@@ -38,8 +38,6 @@ module Ronin
     #       puts "Imported #{record.inspect}!"
     #     end
     #
-    # @api private
-    #
     module Importer
       #
       # Parses the nmap XML file and imports it's contents into the database.
