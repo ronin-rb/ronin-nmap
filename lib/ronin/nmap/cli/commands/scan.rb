@@ -201,8 +201,6 @@ module Ronin
           #   The path to the `.xml` file.
           #
           def import_scan(path)
-            require 'ronin/db'
-
             db_connect
             import_file(path)
           end

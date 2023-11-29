@@ -30,7 +30,6 @@ module Ronin
     #
     # ## Examples
     #
-    #     require 'ronin/db'
     #     require 'ronin/nmap/importer'
     #
     #     Ronin::DB.connect
