@@ -22,6 +22,9 @@ Imports the nmap XML file data into the Ronin database.
   The explicit database URI to connect to
   (ex: `postgres://user:password@host/db`).
 
+`--db-file` *PATH*
+  The sqlite3 database file to use.
+
 `-h`, `--help`
   Print help information
 

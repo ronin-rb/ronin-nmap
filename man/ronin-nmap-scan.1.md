@@ -22,6 +22,9 @@ Runs `nmap` and outputs data as JSON or CSV or imports into the database.
   The explicit database URI to connect to
   (ex: `postgres://user:password@host/db`).
 
+`--db-file` *PATH*
+  The sqlite3 database file to use.
+
 `--sudo`
   Explicitly run `nmap` under `sudo`. If the option is not given, then
   `sudo` will automatically be enabled if the *nmap_options* includes a
