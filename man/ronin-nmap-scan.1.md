@@ -68,11 +68,11 @@ Runs `nmap` and outputs data as JSON or CSV or imports into the database.
 
 Port scans `192.168.1.1` and save the scan results to a JSON file:
 
-    ronin-nmap scan -o scan.json -- -sV 192.168.1.1
+    $ ronin-nmap scan -o scan.json -- -sV 192.168.1.1
 
 Service scans `192.168.1.1` and saves the scan results to the Ronin database:
 
-    ronin-nmap scan --import -- -sV 192.168.1.1
+    $ ronin-nmap scan --import -- -sV 192.168.1.1
 
 ## AUTHOR
 

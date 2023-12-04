@@ -78,23 +78,23 @@ Converts an nmap `.xml` file into a list of targets.
 
 Print `IP:PORT` pairs from the nmap XML file:
 
-    ronin-nmap targets --print-ip-ports scan.xml
+    $ ronin-nmap targets --print-ip-ports scan.xml
 
 Print `IP:PORT` pairs with ports 22, 80, or 443, from the nmap XML file:
 
-    ronin-nmap targets --print-ip-ports --ports 22,80,443 scan.xml
+    $ ronin-nmap targets --print-ip-ports --ports 22,80,443 scan.xml
 
 Print `HOST:PORT` pairs from the nmap XML file:
 
-    ronin-nmap targets --print-host-ports scan.xml
+    $ ronin-nmap targets --print-host-ports scan.xml
 
 Print target hostnames from the nmap XML file:
 
-    ronin-nmap targets --print-hosts --with-port 22 scan.xml
+    $ ronin-nmap targets --print-hosts --with-port 22 scan.xml
 
 Print URIs from the nmap XML file:
 
-    ronin-nmap targets --print-uris scan.xml
+    $ ronin-nmap targets --print-uris scan.xml
 
 ## AUTHOR
 
