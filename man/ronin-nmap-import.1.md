@@ -11,41 +11,41 @@ Imports the nmap XML file data into the Ronin database.
 ## ARGUMENTS
 
 *XML_FILE*
-  The nmap `.xml` file to import.
+: The nmap `.xml` file to import.
 
 ## OPTIONS
 
 `--db` *NAME*
-  The database name to connect to. Defaults to `default` if not given.
+: The database name to connect to. Defaults to `default` if not given.
 
 `--db-uri` *URI*
-  The explicit database URI to connect to
+: The explicit database URI to connect to
   (ex: `postgres://user:password@host/db`).
 
 `--db-file` *PATH*
-  The sqlite3 database file to use.
+: The sqlite3 database file to use.
 
 `-h`, `--help`
-  Print help information
+: Print help information
 
 ## ENVIRONMENT
 
 *HOME*
-  The user's home directory.
+: The user's home directory.
 
 *XDG_CONFIG_HOME*
-  Alternate location for the `~/.config` directory.
+: Alternate location for the `~/.config` directory.
 
 *XDG_DATA_HOME*
-  Alternate location for the `~/.local/share` directory.
+: Alternate location for the `~/.local/share` directory.
 
 ## FILES
 
 `~/.local/share/ronin-db/database.sqlite3`
-  The default sqlite3 database file.
+: The default sqlite3 database file.
 
 `~/.config/ronin-db/database.yml`
-  Optional database configuration.
+: Optional database configuration.
 
 ## AUTHOR
 
