@@ -1,5 +1,9 @@
 # ronin-nmap-convert 1 "2023-03-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-nmap-scan - Runs nmap and outputs data as JSON or CSV or imports into the database
+
 ## SYNOPSIS
 
 `ronin-nmap scan` [options] `--` *nmap_options* ...

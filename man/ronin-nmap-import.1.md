@@ -1,5 +1,9 @@
 # ronin-nmap-import 1 "2023-03-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-nmap-import - Imports an nmap XML file into ronin-db
+
 ## SYNOPSIS
 
 `ronin-nmap import` [*options*] *XML_FILE*

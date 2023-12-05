@@ -1,5 +1,9 @@
 # ronin-nmap-targets 1 "2023-03-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-nmap-targets - Converts an nmap .xml file into a list of targets
+
 ## SYNOPSIS
 
 `ronin-nmap targets` [options] *XML_FILE* [...]

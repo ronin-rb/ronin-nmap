@@ -1,5 +1,9 @@
 # ronin-nmap-convert 1 "2023-03-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-nmap-convert - Converts an nmap .xml file to JSON or CSV
+
 ## SYNOPSIS
 
 `ronin-nmap convert` [`--format` `json`\|`csv`] *XML_FILE* [*OUTPUT_FILE*]
