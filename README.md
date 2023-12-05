@@ -40,6 +40,7 @@ Commands:
     completion
     convert
     dump
+    grep
     help
     import
     print

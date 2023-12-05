@@ -60,4 +60,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-[ronin-nmap-dump](ronin-nmap-dump.1.md)
+[ronin-nmap-dump](ronin-nmap-dump.1.md) [ronin-nmap-grep](ronin-nmap-grep.1.md)
