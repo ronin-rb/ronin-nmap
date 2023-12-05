@@ -52,6 +52,8 @@ module Ronin
           argument :xml_file, required: true,
                               desc:     'The XML file to import'
 
+          description 'Imports an nmap XML file into ronin-db'
+
           man_page 'ronin-nmap-import.1'
 
           #
