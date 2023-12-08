@@ -1,16 +1,23 @@
-# ronin-nmap-targets 1 "2023-03-01" Ronin "User Manuals"
+# ronin-nmap-dump 1 "2023-03-01" Ronin "User Manuals"
 
 ## NAME
 
-ronin-nmap-targets - Converts an nmap .xml file into a list of targets
+ronin-nmap-dump - Dumps the targets from an nmap .xml file.
 
 ## SYNOPSIS
 
-`ronin-nmap targets` [options] *XML_FILE* [...]
+`ronin-nmap dump` [options] *XML_FILE* [...]
 
 ## DESCRIPTION
 
-Converts an nmap `.xml` file into a list of targets.
+Dumps the targets from an nmap `.xml` file into a various of formats. The
+targets can be printed in a variety of formats:
+
+* IP
+* Hostname
+* `IP:PORT`
+* `HOST:PORT`
+* URI
 
 ## ARGUMENTS
 
@@ -82,23 +89,23 @@ Converts an nmap `.xml` file into a list of targets.
 
 Print `IP:PORT` pairs from the nmap XML file:
 
-    $ ronin-nmap targets --print-ip-ports scan.xml
+    $ ronin-nmap dump --print-ip-ports scan.xml
 
 Print `IP:PORT` pairs with ports 22, 80, or 443, from the nmap XML file:
 
-    $ ronin-nmap targets --print-ip-ports --ports 22,80,443 scan.xml
+    $ ronin-nmap dump --print-ip-ports --ports 22,80,443 scan.xml
 
 Print `HOST:PORT` pairs from the nmap XML file:
 
-    $ ronin-nmap targets --print-host-ports scan.xml
+    $ ronin-nmap dump --print-host-ports scan.xml
 
 Print target hostnames from the nmap XML file:
 
-    $ ronin-nmap targets --print-hosts --with-port 22 scan.xml
+    $ ronin-nmap dump --print-hosts --with-port 22 scan.xml
 
 Print URIs from the nmap XML file:
 
-    $ ronin-nmap targets --print-uris scan.xml
+    $ ronin-nmap dump --print-uris scan.xml
 
 ## AUTHOR
 

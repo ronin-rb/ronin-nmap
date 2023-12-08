@@ -29,11 +29,11 @@ module Ronin
     class CLI
       module Commands
         #
-        # Converts an nmap .xml file into a list of targets.
+        # Dumps the targets from an nmap .xml file.
         #
         # ## Usage
         #
-        #     ronin-nmap targets [options] XML_FILE [...]
+        #     ronin-nmap dump [options] XML_FILE [...]
         #
         # ## Options
         #
@@ -63,13 +63,13 @@ module Ronin
         #
         # ## Examples
         #
-        #     ronin-nmap targets --print-ip-ports scan.xml
-        #     ronin-nmap targets --print-ip-ports --ports 22,80,443 scan.xml
-        #     ronin-nmap targets --print-host-ports scan.xml
-        #     ronin-nmap targets --print-hosts --with-port 22 scan.xml
-        #     ronin-nmap targets --print-uris scan.xml
+        #     ronin-nmap dump --print-ip-ports scan.xml
+        #     ronin-nmap dump --print-ip-ports --ports 22,80,443 scan.xml
+        #     ronin-nmap dump --print-host-ports scan.xml
+        #     ronin-nmap dump --print-hosts --with-port 22 scan.xml
+        #     ronin-nmap dump --print-uris scan.xml
         #
-        class Targets < Command
+        class Dump < Command
 
           usage '[options] XML_FILE [...]'
 
@@ -124,9 +124,9 @@ module Ronin
             '--print-uris scan.xml'
           ]
 
-          description 'Converts an nmap .xml file into a list of targets'
+          description 'Dumps the targets from an nmap .xml file'
 
-          man_page 'ronin-nmap-targets.1'
+          man_page 'ronin-nmap-dump.1'
 
           #
           # Initializes the command.
@@ -144,7 +144,7 @@ module Ronin
           end
 
           #
-          # Runs the `ronin-nmap targets` command.
+          # Runs the `ronin-nmap dump` command.
           #
           # @param [Array<String>] xml_files
           #   The nmap `.xml` files to parse.

@@ -21,9 +21,9 @@ metadata:
 generated_files:
  - man/ronin-nmap.1
  - man/ronin-nmap-convert.1
+ - man/ronin-nmap-dump.1
  - man/ronin-nmap-import.1
  - man/ronin-nmap-scan.1
- - man/ronin-nmap-targets.1
 
 required_ruby_version: ">= 3.0.0"
 

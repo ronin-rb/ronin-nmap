@@ -30,14 +30,14 @@ Runs a `ronin-nmap` *COMMAND*.
 *convert*
 : Converts an nmap .xml file to JSON or CSV.
 
+*dump*
+: Dumps the targets from an nmap .xml file.
+
 *import*
 : Imports an nmap XML file into ronin-db.
 
 *scan*
 : Runs nmap and outputs data as JSON or CSV or imports into the database.
-
-*targets*
-: Converts an nmap .xml file into a list of targets.
 
 ## AUTHOR
 
@@ -45,4 +45,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-[ronin-nmap-convert](ronin-nmap-convert.1.md) [ronin-nmap-import](ronin-nmap-import.1.md) [ronin-nmap-scan](ronin-nmap-scan.1.md) [ronin-nmap-targets](ronin-nmap-targets.1.md)
+[ronin-nmap-convert](ronin-nmap-convert.1.md) [ronin-nmap-dump](ronin-nmap-dump.1.md) [ronin-nmap-import](ronin-nmap-import.1.md) [ronin-nmap-scan](ronin-nmap-scan.1.md)
