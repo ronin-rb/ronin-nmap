@@ -153,7 +153,7 @@ module Ronin
           #   Additional arguments for `nmap`.
           #
           # @param [String] output
-          #   The `.xml` output file to save the scan data to.
+          #   The XML output file to save the scan data to.
           #
           # @return [Boolean, nil]
           #   Indicates whether the `nmap` command was successful.
@@ -175,7 +175,7 @@ module Ronin
           # Saves the nmap scan results to an output file in the given format.
           #
           # @param [String] path
-          #   The path to the nmap `.xml` file.
+          #   The path to the nmap XML file.
           #
           # @param [String] output
           #   The path to the desired output file.
@@ -195,10 +195,10 @@ module Ronin
           end
 
           #
-          # Imports a nmap `.xml` scan file.
+          # Imports a nmap XML scan file.
           #
           # @param [String] path
-          #   The path to the `.xml` file.
+          #   The path to the XML file.
           #
           def import_scan(path)
             db_connect

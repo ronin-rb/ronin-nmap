@@ -28,10 +28,10 @@ Runs a `ronin-nmap` *COMMAND*.
 ## COMMANDS
 
 *convert*
-: Converts an nmap .xml file to JSON or CSV.
+: Converts an nmap XML file to JSON or CSV.
 
 *dump*
-: Dumps the targets from an nmap .xml file.
+: Dumps the targets from an nmap XML file.
 
 *import*
 : Imports an nmap XML file into ronin-db.

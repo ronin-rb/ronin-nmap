@@ -29,7 +29,7 @@ module Ronin
     class CLI
       module Commands
         #
-        # Dumps the targets from an nmap .xml file.
+        # Dumps the targets from an nmap XML file.
         #
         # ## Usage
         #
@@ -124,7 +124,7 @@ module Ronin
             '--print-uris scan.xml'
           ]
 
-          description 'Dumps the targets from an nmap .xml file'
+          description 'Dumps the targets from an nmap XML file'
 
           man_page 'ronin-nmap-dump.1'
 
@@ -147,7 +147,7 @@ module Ronin
           # Runs the `ronin-nmap dump` command.
           #
           # @param [Array<String>] xml_files
-          #   The nmap `.xml` files to parse.
+          #   The nmap XML files to parse.
           #
           def run(*xml_files)
             xml_files.each do |xml_file|

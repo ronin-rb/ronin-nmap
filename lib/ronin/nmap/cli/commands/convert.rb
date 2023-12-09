@@ -26,7 +26,7 @@ module Ronin
     class CLI
       module Commands
         #
-        # Converts an nmap `.xml` file to JSON or CSV.
+        # Converts an nmap XML file to JSON or CSV.
         #
         # ## Usage
         #
@@ -59,7 +59,7 @@ module Ronin
           argument :output_file, required: false,
                                  desc:     'The output file'
 
-          description "Converts an nmap .xml file to JSON or CSV"
+          description "Converts an nmap XML file to JSON or CSV"
 
           man_page 'ronin-nmap-convert.1'
 

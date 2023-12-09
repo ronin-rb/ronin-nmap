@@ -60,7 +60,7 @@ module Ronin
           # Runs the `ronin-nmap import` command.
           #
           # @param [String] xml_file
-          #   The nmap `.xml` file to import.
+          #   The nmap XML file to import.
           #
           def run(xml_file)
             unless File.file?(xml_file)

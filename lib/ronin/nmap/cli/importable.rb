@@ -48,12 +48,12 @@ module Ronin
         end
 
         #
-        # Imports an nmap `.xml` file into the [ronin-db] database.
+        # Imports an nmap XML file into the [ronin-db] database.
         #
         # [ronin-db]: https://github.com/ronin-rb/ronin-db#readme
         #
         # @param [String] xml_file
-        #   The path to the nmap `.xml` file to import.
+        #   The path to the nmap XML file to import.
         #
         def import_file(xml_file)
           Importer.import_file(xml_file) do |record|

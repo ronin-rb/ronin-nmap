@@ -44,10 +44,10 @@ module Ronin
       }
 
       #
-      # Converts an nmap `.xml` scan file into another format.
+      # Converts an nmap XML scan file into another format.
       #
       # @param [String] src
-      #   The input `.xml` file path.
+      #   The input XML file path.
       #
       # @param [String] dest
       #   The output file path.

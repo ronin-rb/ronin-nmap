@@ -2,7 +2,7 @@
 
 ## NAME
 
-ronin-nmap-convert - Converts an nmap .xml file to JSON or CSV
+ronin-nmap-convert - Converts an nmap XML file to JSON or CSV
 
 ## SYNOPSIS
 
@@ -10,12 +10,12 @@ ronin-nmap-convert - Converts an nmap .xml file to JSON or CSV
 
 ## DESCRIPTION
 
-Converts an nmap `.xml` file to JSON or CSV.
+Converts an nmap XML file to JSON or CSV.
 
 ## ARGUMENTS
 
 *XML_FILE*
-: The nmap `.xml` file to import.
+: The nmap XML file to import.
 
 *OUTPUT_FILE*
 : The optional output file to write to.

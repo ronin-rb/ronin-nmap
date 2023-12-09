@@ -2,7 +2,7 @@
 
 ## NAME
 
-ronin-nmap-dump - Dumps the targets from an nmap .xml file.
+ronin-nmap-dump - Dumps the targets from an nmap XML file.
 
 ## SYNOPSIS
 
@@ -10,7 +10,7 @@ ronin-nmap-dump - Dumps the targets from an nmap .xml file.
 
 ## DESCRIPTION
 
-Dumps the targets from an nmap `.xml` file into a various of formats. The
+Dumps the targets from an nmap XML file into a various of formats. The
 targets can be printed in a variety of formats:
 
 * IP
@@ -22,7 +22,7 @@ targets can be printed in a variety of formats:
 ## ARGUMENTS
 
 *XML_FILE*
-: The nmap `.xml` file to import.
+: The nmap XML file to import.
 
 ## OPTIONS
 

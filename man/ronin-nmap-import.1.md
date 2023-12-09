@@ -15,7 +15,7 @@ Imports the nmap XML file data into the Ronin database.
 ## ARGUMENTS
 
 *XML_FILE*
-: The nmap `.xml` file to import.
+: The nmap XML file to import.
 
 ## OPTIONS
 
