@@ -29,7 +29,7 @@ module Ronin
     class CLI
       module Commands
         #
-        # Dumps the targets from an nmap XML file.
+        # Dumps the scanned ports from nmap XML file(s).
         #
         # ## Usage
         #
@@ -124,7 +124,7 @@ module Ronin
             '--print-uris scan.xml'
           ]
 
-          description 'Dumps the targets from an nmap XML file'
+          description 'Dumps the scanned ports from nmap XML file(s)'
 
           man_page 'ronin-nmap-dump.1'
 

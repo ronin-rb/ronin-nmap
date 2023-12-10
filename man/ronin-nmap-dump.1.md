@@ -2,7 +2,7 @@
 
 ## NAME
 
-ronin-nmap-dump - Dumps the targets from an nmap XML file.
+ronin-nmap-dump - Dumps the scanned ports from nmap XML file(s).
 
 ## SYNOPSIS
 
@@ -10,7 +10,7 @@ ronin-nmap-dump - Dumps the targets from an nmap XML file.
 
 ## DESCRIPTION
 
-Dumps the targets from an nmap XML file into a various of formats. The
+Dumps the scanned ports from nmap XML files into a various of formats. The
 targets can be printed in a variety of formats:
 
 * IP
