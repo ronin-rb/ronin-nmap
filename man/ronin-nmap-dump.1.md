@@ -10,8 +10,8 @@ ronin-nmap-dump - Dumps the scanned ports from nmap XML file(s).
 
 ## DESCRIPTION
 
-Dumps the scanned ports from nmap XML files into a various of formats. The
-targets can be printed in a variety of formats:
+Dumps the scanned ports from nmap XML files into a variety of formats. The
+output formats include:
 
 * IP
 * Hostname
