@@ -19,6 +19,9 @@ output formats include:
 * `HOST:PORT`
 * URI
 
+The command also supports filtering the nmap targets by IP, IP range, domain,
+OS, port, service, or NSE script.
+
 ## ARGUMENTS
 
 *XML_FILE*
