@@ -62,19 +62,19 @@ Parse and filter an nmap XML scan file:
 $ ronin-nmap parse --hosts-with-port 443 scan.xml
 ```
 
-Convert an nmap XML scan file to a list of `IP:PORT` pairs:
+Dump a nmap XML scan file to a list of `IP:PORT` pairs:
 
 ```shell
 $ ronin-nmap dump --print-ip-ports scan.xml
 ```
 
-Convert an nmap XML scan file to a list of `HOST:PORT` pairs:
+Dump a nmap XML scan file to a list of `HOST:PORT` pairs:
 
 ```shell
 $ ronin-nmap dump --print-host-ports scan.xml
 ```
 
-Convert an nmap XML scan file to a list of `http`://` or `https://` URIs:
+Dump a nmap XML scan file to a list of `http`://` or `https://` URIs:
 
 ```shell
 $ ronin-nmap dump --print-uris scan.xml
