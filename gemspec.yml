@@ -19,6 +19,7 @@ metadata:
   rubygems_mfa_required: 'true'
 
 generated_files:
+ - data/completions/ronin-nmap
  - man/ronin-nmap.1
  - man/ronin-nmap-convert.1
  - man/ronin-nmap-dump.1
