@@ -21,6 +21,7 @@ metadata:
 generated_files:
  - data/completions/ronin-nmap
  - man/ronin-nmap.1
+ - man/ronin-nmap-completion.1
  - man/ronin-nmap-convert.1
  - man/ronin-nmap-dump.1
  - man/ronin-nmap-import.1

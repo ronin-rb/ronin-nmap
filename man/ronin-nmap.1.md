@@ -27,6 +27,9 @@ Runs a `ronin-nmap` *COMMAND*.
 
 ## COMMANDS
 
+*completion*
+: Manages the shell completion rules for `ronin-nmap`.
+
 *convert*
 : Converts an nmap XML file to JSON or CSV.
 
@@ -45,4 +48,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-[ronin-nmap-convert](ronin-nmap-convert.1.md) [ronin-nmap-dump](ronin-nmap-dump.1.md) [ronin-nmap-import](ronin-nmap-import.1.md) [ronin-nmap-scan](ronin-nmap-scan.1.md)
+[ronin-nmap-completion](ronin-nmap-completion.1.md) [ronin-nmap-convert](ronin-nmap-convert.1.md) [ronin-nmap-dump](ronin-nmap-dump.1.md) [ronin-nmap-import](ronin-nmap-import.1.md) [ronin-nmap-scan](ronin-nmap-scan.1.md)
