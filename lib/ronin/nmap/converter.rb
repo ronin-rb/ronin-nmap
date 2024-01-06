@@ -87,7 +87,7 @@ module Ronin
       #
       # Infers the output format from the output file's extension.
       #
-      # @param [String] output_path
+      # @param [String] path
       #   The output file name.
       #
       # @return [:json, :csv]

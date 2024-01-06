@@ -204,9 +204,6 @@ module Ronin
         # @param [Enumerator::Lazy] targets
         #   The targets to filter.
         #
-        # @param [String] ip
-        #   The IP address to filter by.
-        #
         # @return [Enumerator::Lazy]
         #   A lazy enumerator of the filtered targets.
         #
@@ -225,7 +222,7 @@ module Ronin
         # @return [Enumerator::Lazy]
         #   A lazy enumerator of the filtered targets.
         #
-        def filter_targets_by_ip_range(target)
+        def filter_targets_by_ip_range(targets)
           targets.filter do |host|
             @with_ip_ranges.any? do |ip_range|
               ip_range.include?(host.address)
