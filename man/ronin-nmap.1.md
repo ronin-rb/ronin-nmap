@@ -1,4 +1,4 @@
-# ronin-nmap 1 "2024-01-01" Ronin "User Manuals"
+# ronin-nmap 1 "2024-01-01" Ronin Nmap "User Manuals"
 
 ## NAME
 
