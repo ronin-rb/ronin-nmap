@@ -114,3 +114,4 @@ Print URIs from the nmap XML file:
 
 Postmodern <postmodern.mod3@gmail.com>
 
+[ronin-nmap-print](ronin-nmap-print.1.md)

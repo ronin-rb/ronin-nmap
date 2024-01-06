@@ -42,6 +42,7 @@ Commands:
     dump
     help
     import
+    print
     scan
 ```
 

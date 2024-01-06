@@ -39,6 +39,9 @@ Runs a `ronin-nmap` *COMMAND*.
 *import*
 : Imports an nmap XML file into ronin-db.
 
+*print*
+: Prints the scanned hosts from nmap XML file(s).
+
 *scan*
 : Runs nmap and outputs data as JSON or CSV or imports into the database.
 
