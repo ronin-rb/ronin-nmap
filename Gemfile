@@ -6,6 +6,8 @@ gemspec
 
 platform :jruby do
   gem 'jruby-openssl', '~> 0.7'
+  gem 'activerecord-jdbcsqlite3-adapter', '~> 70.0'
+  gem 'activerecord', '< 7.1.0'
 end
 
 # gem 'ruby-nmap', '~> 1.0', github: 'postmodern/ruby-nmap'
