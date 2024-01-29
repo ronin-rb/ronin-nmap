@@ -26,6 +26,8 @@ module Ronin
       #
       # Handles converting nmap XML into JSON.
       #
+      # @api private
+      #
       module JSON
         #
         # Converts parsed nmap XML to JSON.
@@ -33,15 +35,10 @@ module Ronin
         # @param [::Nmap::XML] xml
         #   The parsed nmap XML.
         #
-        # @param [IO, nil] output
-        #   Optional output stream to write the JSON to.
+        # @param [IO, StringIO] output
+        #   The output stream to write the JSON to.
         #
-        # @return [String]
-        #   The raw JSON.
-        #
-        # @api public
-        #
-        def self.convert(xml,output=nil)
+        def self.convert(xml,output)
           xml_to_json(xml,output)
         end
 
@@ -51,13 +48,10 @@ module Ronin
         # @param [::Nmap::XML] xml
         #   The parsed nmap XML.
         #
-        # @param [IO, nil] output
-        #   Optional output stream to write the JSON to.
+        # @param [IO, StringIO] output
+        #   The output stream to write the JSON to.
         #
-        # @return [String]
-        #   The raw JSON.
-        #
-        def self.xml_to_json(xml,output=nil)
+        def self.xml_to_json(xml,output)
           ::JSON.dump(xml_as_json(xml),output)
         end
 

@@ -26,21 +26,18 @@ module Ronin
       #
       # Handles converting nmap XML into CSV.
       #
+      # @api private
+      #
       module CSV
         #
         # Converts parsed nmap XML into CSV.
         #
         # @param [::Nmap::XML] xml
         #
-        # @param [String, IO] output
-        #   The optional output to write the CSV to.
+        # @param [IO, StringIO] output
+        #   The output to write the CSV to.
         #
-        # @return [String, IO]
-        #   The CSV output.
-        #
-        # @api public
-        #
-        def self.convert(xml,output=String.new)
+        def self.convert(xml,output)
           xml_to_csv(xml,output)
         end
 
@@ -50,18 +47,13 @@ module Ronin
         # @param [::Nmap::XML] xml
         #   The parsed nmap XML to convert to CSV.
         #
-        # @param [String, IO] output
-        #   The optional output to write the CSV to.
+        # @param [IO, StringIO] output
+        #   The output to write the CSV to.
         #
-        # @return [String, IO]
-        #   The CSV output.
-        #
-        def self.xml_to_csv(xml,output=String.new)
+        def self.xml_to_csv(xml,output)
           xml_to_rows(xml) do |row|
             output << ::CSV.generate_line(row)
           end
-
-          return output
         end
 
         # CSV rows header.

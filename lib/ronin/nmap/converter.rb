@@ -69,7 +69,7 @@ module Ronin
       # @param [::Nmap::XML] xml
       #   The nmap XML to convert.
       #
-      # @param [IO, String, nil] output
+      # @param [IO, nil] output
       #   Optional output to write the converted output to.
       #
       # @param [:json, :csv] format
@@ -81,7 +81,13 @@ module Ronin
       # @api public
       #
       def self.convert(xml,output=nil, format: )
-        Converters[format].convert(xml,output)
+        if output
+          Converters[format].convert(xml,output)
+        else
+          output = StringIO.new
+          convert(xml,output, format: format)
+          output.string
+        end
       end
 
       #
