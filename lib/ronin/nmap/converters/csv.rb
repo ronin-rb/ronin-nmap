@@ -102,7 +102,7 @@ module Ronin
           ]
 
           host.each_port do |port|
-            yield(*host_row, *port_to_row(port))
+            yield([*host_row, *port_to_row(port)])
           end
         end
 
