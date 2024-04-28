@@ -13,6 +13,15 @@ RSpec.describe Ronin::Nmap::Converters::CSV do
   describe '.convert' do
     let(:tempfile) { ['dest', '.csv'] }
 
+    around(:each) do |example|
+      original_timezone = ENV['TZ']
+      ENV['TZ']         = 'America/New_York'
+
+      example.run
+
+      ENV['TZ'] = original_timezone
+    end
+
     it 'must convert nmap XML to csv and write it into output' do
       Tempfile.create(tempfile) do |output|
         subject.convert(nmap_file, output)
@@ -25,6 +34,15 @@ RSpec.describe Ronin::Nmap::Converters::CSV do
 
   describe '.xml_to_csv' do
     let(:tempfile) { ['dest', '.csv'] }
+
+    around(:each) do |example|
+      original_timezone = ENV['TZ']
+      ENV['TZ']         = 'America/New_York'
+
+      example.run
+
+      ENV['TZ'] = original_timezone
+    end
 
     it 'must convert nmap XML to csv and write it into output' do
       Tempfile.create(tempfile) do |output|
