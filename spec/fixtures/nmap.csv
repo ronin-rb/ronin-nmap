@@ -1,0 +1,21 @@
+host.start_time,host.end_time,host.status,host.ip,port.protocol,port.number,port.status,port.reason,port.reason_ttl,service.name,service.ssl,service.protocol,service.produce,service.version,service.extra_info,service.hostnmae,service.os_type,service.device_type,service.fingerprint_method,service.fingerprint,service.confidence
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,tcp,22,open,syn-ack,syn-ack,ssh,false,,,,protocol 2.0,,,,probed,"SF-Port22-TCP:V=6.45%I=7%D=4/17%Time=55316FE1%P=x86_64-redhat-linux-gnu%r(NULL,29,""SSH-2\.0-OpenSSH_6\.6\.1p1\x20Ubuntu-2ubuntu2\r\n"");",10
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,tcp,80,open,syn-ack,syn-ack,http,false,,Apache httpd,2.4.7,(Ubuntu),,,,probed,,10
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,tcp,9929,open,syn-ack,syn-ack,nping-echo,false,,Nping echo,,,,,,probed,,10
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,tcp,31337,open,syn-ack,syn-ack,ncat-chat,true,,Ncat chat,,users: nobody,,,,probed,,10
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,68,open|filtered,no-response,no-response,dhcpc,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,113,open|filtered,no-response,no-response,auth,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,123,open,udp-response,udp-response,ntp,false,,NTP,v4,,,,,probed,,10
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,135,open|filtered,no-response,no-response,msrpc,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,136,open|filtered,no-response,no-response,profile,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,137,open|filtered,no-response,no-response,netbios-ns,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,138,open|filtered,no-response,no-response,netbios-dgm,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,139,open|filtered,no-response,no-response,netbios-ssn,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,161,open|filtered,no-response,no-response,snmp,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,445,open|filtered,no-response,no-response,microsoft-ds,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,520,open|filtered,no-response,no-response,route,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,1214,open|filtered,no-response,no-response,fasttrack,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,4666,open|filtered,no-response,no-response,edonkey,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,4672,open|filtered,no-response,no-response,rfa,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,5555,open|filtered,no-response,no-response,rplay,false,,,,,,,,table,,3
+2015-04-17 16:23:10 -0400,2015-04-17 16:43:12 -0400,up,45.33.32.156,udp,6346,open|filtered,no-response,no-response,gnutella,false,,,,,,,,table,,3
