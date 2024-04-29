@@ -17,6 +17,29 @@ RSpec.describe Ronin::Nmap::Importer do
     Ronin::DB::IPAddress.destroy_all
   end
 
+  let(:expected_imported_classes) do
+    [
+      Ronin::DB::IPAddress,
+      Ronin::DB::HostName,
+      Ronin::DB::HostName,
+      Ronin::DB::Port,
+      Ronin::DB::Service,
+      Ronin::DB::OpenPort,
+      Ronin::DB::Port,
+      Ronin::DB::Service,
+      Ronin::DB::OpenPort,
+      Ronin::DB::Port,
+      Ronin::DB::Service,
+      Ronin::DB::OpenPort,
+      Ronin::DB::Port,
+      Ronin::DB::Service,
+      Ronin::DB::OpenPort,
+      Ronin::DB::Port,
+      Ronin::DB::Service,
+      Ronin::DB::OpenPort
+    ]
+  end
+
   describe '.import_file' do
     it 'must import and yield records from parsed nmap XML' do
       yielded_values = []
@@ -26,24 +49,25 @@ RSpec.describe Ronin::Nmap::Importer do
       end
 
       expect(yielded_values.size).to eq(18)
-      expect(yielded_values[0]).to be_a(Ronin::DB::IPAddress)
-      expect(yielded_values[1]).to be_a(Ronin::DB::HostName)
-      expect(yielded_values[2]).to be_a(Ronin::DB::HostName)
-      expect(yielded_values[3]).to be_a(Ronin::DB::Port)
-      expect(yielded_values[4]).to be_a(Ronin::DB::Service)
-      expect(yielded_values[5]).to be_a(Ronin::DB::OpenPort)
-      expect(yielded_values[6]).to be_a(Ronin::DB::Port)
-      expect(yielded_values[7]).to be_a(Ronin::DB::Service)
-      expect(yielded_values[8]).to be_a(Ronin::DB::OpenPort)
-      expect(yielded_values[9]).to be_a(Ronin::DB::Port)
-      expect(yielded_values[10]).to be_a(Ronin::DB::Service)
-      expect(yielded_values[11]).to be_a(Ronin::DB::OpenPort)
-      expect(yielded_values[12]).to be_a(Ronin::DB::Port)
-      expect(yielded_values[13]).to be_a(Ronin::DB::Service)
-      expect(yielded_values[14]).to be_a(Ronin::DB::OpenPort)
-      expect(yielded_values[15]).to be_a(Ronin::DB::Port)
-      expect(yielded_values[16]).to be_a(Ronin::DB::Service)
-      expect(yielded_values[17]).to be_a(Ronin::DB::OpenPort)
+      expect(yielded_values.map(&:class)).to match_array(expected_imported_classes)
+      expect(yielded_values[0].address).to eq('45.33.32.156')
+      expect(yielded_values[1].name).to eq('scanme.nmap.org')
+      expect(yielded_values[2].name).to eq('li982-156.members.linode.com')
+      expect(yielded_values[3].number).to eq(22)
+      expect(yielded_values[4].name).to eq('ssh')
+      expect(yielded_values[5].number).to eq(22)
+      expect(yielded_values[6].number).to eq(80)
+      expect(yielded_values[7].name).to eq('http')
+      expect(yielded_values[8].number).to eq(80)
+      expect(yielded_values[9].number).to eq(9929)
+      expect(yielded_values[10].name).to eq('nping-echo')
+      expect(yielded_values[11].number).to eq(9929)
+      expect(yielded_values[12].number).to eq(31337)
+      expect(yielded_values[13].name).to eq('ncat-chat')
+      expect(yielded_values[14].number).to eq(31337)
+      expect(yielded_values[15].number).to eq(123)
+      expect(yielded_values[16].name).to eq('ntp')
+      expect(yielded_values[17].number).to eq(123)
     end
   end
 
@@ -53,24 +77,25 @@ RSpec.describe Ronin::Nmap::Importer do
         result = subject.import(nmap_file)
 
         expect(result.size).to eq(18)
-        expect(result[0]).to be_a(Ronin::DB::IPAddress)
-        expect(result[1]).to be_a(Ronin::DB::HostName)
-        expect(result[2]).to be_a(Ronin::DB::HostName)
-        expect(result[3]).to be_a(Ronin::DB::Port)
-        expect(result[4]).to be_a(Ronin::DB::Service)
-        expect(result[5]).to be_a(Ronin::DB::OpenPort)
-        expect(result[6]).to be_a(Ronin::DB::Port)
-        expect(result[7]).to be_a(Ronin::DB::Service)
-        expect(result[8]).to be_a(Ronin::DB::OpenPort)
-        expect(result[9]).to be_a(Ronin::DB::Port)
-        expect(result[10]).to be_a(Ronin::DB::Service)
-        expect(result[11]).to be_a(Ronin::DB::OpenPort)
-        expect(result[12]).to be_a(Ronin::DB::Port)
-        expect(result[13]).to be_a(Ronin::DB::Service)
-        expect(result[14]).to be_a(Ronin::DB::OpenPort)
-        expect(result[15]).to be_a(Ronin::DB::Port)
-        expect(result[16]).to be_a(Ronin::DB::Service)
-        expect(result[17]).to be_a(Ronin::DB::OpenPort)
+        expect(result.map(&:class)).to match_array(expected_imported_classes)
+        expect(result[0].address).to eq('45.33.32.156')
+        expect(result[1].name).to eq('scanme.nmap.org')
+        expect(result[2].name).to eq('li982-156.members.linode.com')
+        expect(result[3].number).to eq(22)
+        expect(result[4].name).to eq('ssh')
+        expect(result[5].number).to eq(22)
+        expect(result[6].number).to eq(80)
+        expect(result[7].name).to eq('http')
+        expect(result[8].number).to eq(80)
+        expect(result[9].number).to eq(9929)
+        expect(result[10].name).to eq('nping-echo')
+        expect(result[11].number).to eq(9929)
+        expect(result[12].number).to eq(31337)
+        expect(result[13].name).to eq('ncat-chat')
+        expect(result[14].number).to eq(31337)
+        expect(result[15].number).to eq(123)
+        expect(result[16].name).to eq('ntp')
+        expect(result[17].number).to eq(123)
       end
     end
 
@@ -83,24 +108,7 @@ RSpec.describe Ronin::Nmap::Importer do
         end
 
         expect(yielded_values.size).to eq(18)
-        expect(yielded_values[0]).to be_a(Ronin::DB::IPAddress)
-        expect(yielded_values[1]).to be_a(Ronin::DB::HostName)
-        expect(yielded_values[2]).to be_a(Ronin::DB::HostName)
-        expect(yielded_values[3]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[4]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[5]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[6]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[7]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[8]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[9]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[10]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[11]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[12]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[13]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[14]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[15]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[16]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[17]).to be_a(Ronin::DB::OpenPort)
+        expect(yielded_values.map(&:class)).to match_array(expected_imported_classes)
       end
     end
   end
@@ -121,24 +129,25 @@ RSpec.describe Ronin::Nmap::Importer do
         end
 
         expect(yielded_values.size).to eq(18)
-        expect(yielded_values[0]).to be_a(Ronin::DB::IPAddress)
-        expect(yielded_values[1]).to be_a(Ronin::DB::HostName)
-        expect(yielded_values[2]).to be_a(Ronin::DB::HostName)
-        expect(yielded_values[3]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[4]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[5]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[6]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[7]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[8]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[9]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[10]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[11]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[12]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[13]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[14]).to be_a(Ronin::DB::OpenPort)
-        expect(yielded_values[15]).to be_a(Ronin::DB::Port)
-        expect(yielded_values[16]).to be_a(Ronin::DB::Service)
-        expect(yielded_values[17]).to be_a(Ronin::DB::OpenPort)
+        expect(yielded_values.map(&:class)).to match_array(expected_imported_classes)
+        expect(yielded_values[0].address).to eq('45.33.32.156')
+        expect(yielded_values[1].name).to eq('scanme.nmap.org')
+        expect(yielded_values[2].name).to eq('li982-156.members.linode.com')
+        expect(yielded_values[3].number).to eq(22)
+        expect(yielded_values[4].name).to eq('ssh')
+        expect(yielded_values[5].number).to eq(22)
+        expect(yielded_values[6].number).to eq(80)
+        expect(yielded_values[7].name).to eq('http')
+        expect(yielded_values[8].number).to eq(80)
+        expect(yielded_values[9].number).to eq(9929)
+        expect(yielded_values[10].name).to eq('nping-echo')
+        expect(yielded_values[11].number).to eq(9929)
+        expect(yielded_values[12].number).to eq(31337)
+        expect(yielded_values[13].name).to eq('ncat-chat')
+        expect(yielded_values[14].number).to eq(31337)
+        expect(yielded_values[15].number).to eq(123)
+        expect(yielded_values[16].name).to eq('ntp')
+        expect(yielded_values[17].number).to eq(123)
       end
     end
   end
@@ -180,7 +189,9 @@ RSpec.describe Ronin::Nmap::Importer do
 
       expect(result.size).to eq(2)
       expect(result[0]).to be_a(Ronin::DB::HostName)
+      expect(result[0].name).to eq('scanme.nmap.org')
       expect(result[1]).to be_a(Ronin::DB::HostName)
+      expect(result[1].name).to eq('li982-156.members.linode.com')
     end
 
     context 'when block is given' do
@@ -208,12 +219,14 @@ RSpec.describe Ronin::Nmap::Importer do
   end
 
   describe '.import_addresses' do
-    let(:host) { nmap_file.host }
+    let(:host)          { nmap_file.host }
+    let(:expected_addr) { '45.33.32.156' }
 
     it 'must import and return ip and mac addresses' do
       result = subject.import_addresses(host)
 
       expect(result[0]).to match_array(be_a(Ronin::DB::IPAddress))
+      expect(result[0][0].address).to eq('45.33.32.156')
       expect(result[1]).to eq([])
     end
   end
@@ -303,7 +316,9 @@ RSpec.describe Ronin::Nmap::Importer do
 
       expect(result.size).to be(2)
       expect(result[0]).to be_a(Ronin::DB::Port)
+      expect(result[0].number).to be(22)
       expect(result[1]).to be_a(Ronin::DB::Service)
+      expect(result[1].name).to eq('ssh')
     end
 
     context 'when block is given' do
@@ -316,7 +331,9 @@ RSpec.describe Ronin::Nmap::Importer do
 
         expect(yielded_values.size).to be(2)
         expect(yielded_values[0]).to be_a(Ronin::DB::Port)
+        expect(yielded_values[0].number).to be(22)
         expect(yielded_values[1]).to be_a(Ronin::DB::Service)
+        expect(yielded_values[1].name).to eq('ssh')
       end
     end
   end
