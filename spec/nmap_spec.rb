@@ -28,8 +28,8 @@ RSpec.describe Ronin::Nmap do
         allow(Kernel).to receive(:system).with({}, 'nmap', '-oX', match(expected_output_filename), targets).and_return(true)
       end
 
-      it 'must return false' do
-        expect(subject.scan(targets).class).to be(Nmap::XML)
+      it 'must return a Nmap::XML' do
+        expect(subject.scan(targets)).to be_kind_of(Nmap::XML)
       end
     end
 
