@@ -251,7 +251,14 @@ RSpec.describe Ronin::Nmap::Converters::JSON do
 
   describe '.tcp_sequence_as_json' do
     let(:sequence)      { nmap_file.host.tcp_sequence }
-    let(:expected_json) { subject.tcp_sequence_as_json(sequence) }
+    let(:expected_json) do
+      {
+        description: sequence.description,
+        values:      sequence.values,
+        index:       sequence.index,
+        difficulty:  sequence.difficulty
+      }
+    end
 
     it 'must convert TcpSequence into json representation' do
       expect(subject.tcp_sequence_as_json(sequence)).to eq(expected_json)
