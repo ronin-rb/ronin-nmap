@@ -39,3 +39,5 @@ CommandKit::Completion::Task.new(
   class_name:  'Ronin::Nmap::CLI',
   output_file: 'data/completions/ronin-nmap'
 )
+
+task :setup => %w[man command_kit:completion]
