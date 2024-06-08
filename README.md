@@ -97,16 +97,64 @@ $ ronin-nmap convert scan.xml scan.json
 
 ## Examples
 
+Performing an `nmap` scan and returning the parsed nmap XML data:
+
 ```ruby
 require 'ronin/nmap'
 
 xml = Ronin::Nmap.scan(syn_scan: true, ports: [80, 443], targets: '192.168.1.*')
 # => #<Nmap::XML: ...>
+```
+
+Accessesing the nmap XML scan data:
+
+```ruby
 xml.hosts
 # => [#<Nmap::XML::Host: 192.168.1.1>, ...]
 
-host = xml.hosts.first
-host.open_ports
+host = xml.host
+# => #<Nmap::XML::Host: scanme.nmap.org>
+
+xml.host.open_ports
+# => [#<Nmap::XML::Port: 22>,
+#     #<Nmap::XML::Port: 80>,
+#     #<Nmap::XML::Port: 9929>,
+#     #<Nmap::XML::Port: 31337>,
+#     #<Nmap::XML::Port: 123>]
+
+port = xml.host.open_ports.first
+# => #<Nmap::XML::Port: 22>
+
+port.state
+# => :open
+
+port.protocol
+# => :tcp
+
+port.service
+# => #<Nmap::XML::Service:0x00007f5614e68248 @node=#<Nokogiri::XML::Element:0x7ada0 name="service" attribute_nodes=[#<Nokogiri::XML::Attr:0x7aecc name="name" value="ssh">, #<Nokogiri::XML::Attr:0x7b05c name="extrainfo" value="protocol 2.0">, #<Nokogiri::XML::Attr:0x7b1ec name="servicefp" value="SF-Port22-TCP:V=6.45%I=7%D=4/17%Time=55316FE1%P=x86_64-redhat-linux-gnu%r(NULL,29,\"SSH-2\\.0-OpenSSH_6\\.6\\.1p1\\x20Ubuntu-2ubuntu2\\r\\n\");">, #<Nokogiri::XML::Attr:0x7b37c name="method" value="probed">, #<Nokogiri::XML::Attr:0x7b50c name="conf" value="10">]>>
+
+port.scripts
+# => {"ssh-hostkey"=>...,
+#     "ssh2-enum-algos"=>...}
+```
+
+Printing the parsed nmap XML data:
+
+```ruby
+xml.each_host do |host|
+  puts "[ #{host.ip} ]"
+
+  host.each_port do |port|
+    puts "  #{port.number}/#{port.protocol}\t#{port.state}\t#{port.service}"
+
+    port.scripts.each do |id,script|
+      puts "    [ #{id} ]"
+
+      script.output.each_line { |line| puts "      #{line}" }
+    end
+  end
+end
 ```
 
 ## Requirements
