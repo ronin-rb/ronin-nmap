@@ -38,8 +38,10 @@ RSpec.describe Ronin::Nmap do
         allow(Kernel).to receive(:system).with({}, 'nmap', '-oX', anything, targets).and_return(false)
       end
 
-      it 'must return false' do
-        expect(subject.scan(targets)).to be(false)
+      it "must raise Ronin::Nmap::ScanFailed with the command arguments" do
+        expect {
+          subject.scan(targets)
+        }.to raise_error(Ronin::Nmap::ScanFailed,/\Anmap scan failed: nmap -oX [^\s]+ [^\s]+\z/)
       end
     end
 
@@ -48,8 +50,10 @@ RSpec.describe Ronin::Nmap do
         allow(Kernel).to receive(:system).with({}, 'nmap', '-oX', anything, targets).and_return(nil)
       end
 
-      it 'must return nil' do
-        expect(subject.scan(targets)).to be(nil)
+      it "must raise Ronin::Nmap::NotInstalled" do
+        expect {
+          subject.scan(targets)
+        }.to raise_error(Ronin::Nmap::NotInstalled,"the nmap command is not installed")
       end
     end
   end

@@ -18,6 +18,7 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'ronin/nmap/exceptions'
 require 'ronin/nmap/importer'
 require 'ronin/core/home'
 require 'nmap/command'
@@ -128,10 +129,15 @@ module Ronin
     # @yieldparam [::Nmap::Command] nmap
     #   The `nmap` command object.
     #
-    # @return [::Nmap::XML, false, nil]
+    # @return [::Nmap::XML]
     #   If the `nmap` command was sucessful, the parsed nmap XML data will be
-    #   returned. If the `nmap` command failed then `false` will be returned.
-    #   If `nmap` is not installed, then `nil` is returned.
+    #   returned.
+    #
+    # @raise [NotInstalled]
+    #   The `nmap` command was not installed.
+    #
+    # @raise [ScanFailed]
+    #   The `nmap` scan failed.
     #
     # @example
     #   xml = Nmap.scan('192.168.1.*', syn_scan: true, ports: [80, 443])
@@ -179,10 +185,15 @@ module Ronin
                  raise(ArgumentError,"sudo keyword must be a Hash, true, false, or nil")
                end
 
-      # if the command was successful, return the parsed XML,
-      # otherwise return the `false` or `nil` status.
-      if status then ::Nmap::XML.open(nmap.output_xml)
-      else           status
+      # if the command was successful, return the parsed XML, otherwise raises
+      # an exception.
+      case status
+      when nil
+        raise(NotInstalled,"the nmap command is not installed")
+      when false
+        raise(ScanFailed,"nmap scan failed: #{nmap.command_argv.join(' ')}")
+      else
+        ::Nmap::XML.open(nmap.output_xml)
       end
     end
   end
