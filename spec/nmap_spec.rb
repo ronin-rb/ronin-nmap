@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'ronin/nmap'
 
 RSpec.describe Ronin::Nmap do
+  let(:fixtures_dir) { File.join(__dir__,'fixtures') }
+
   describe '.scan' do
     let(:targets) { '192.168.1.*' }
 
@@ -55,6 +57,17 @@ RSpec.describe Ronin::Nmap do
           subject.scan(targets)
         }.to raise_error(Ronin::Nmap::NotInstalled,"the nmap command is not installed")
       end
+    end
+  end
+
+  describe ".parse" do
+    let(:path) { File.join(fixtures_dir,'nmap.xml') }
+
+    it "must return a Nmap::XML object for the given path" do
+      xml = subject.parse(path)
+
+      expect(xml).to be_kind_of(Nmap::XML)
+      expect(xml.path).to eq(path)
     end
   end
 end

@@ -196,5 +196,22 @@ module Ronin
         ::Nmap::XML.open(nmap.output_xml)
       end
     end
+
+    #
+    # Parses a nmap XML file.
+    #
+    # @param [String] path
+    #   The path to the nmap XML file.
+    #
+    # @return [::Nmap::XML]
+    #   The parsed nmap XML file.
+    #
+    # @see https://rubydoc.info/gems/ruby-nmap/Nmap/XML
+    #
+    # @api public
+    #
+    def self.parse(path)
+      ::Nmap::XML.open(path)
+    end
   end
 end
