@@ -130,7 +130,7 @@ module Ronin
     #   The `nmap` command object.
     #
     # @return [::Nmap::XML]
-    #   If the `nmap` command was sucessful, the parsed nmap XML data will be
+    #   If the `nmap` command was successful, the parsed nmap XML data will be
     #   returned.
     #
     # @raise [NotInstalled]
