@@ -145,17 +145,23 @@ module Ronin
     #   xml.up_hosts
     #   # => [#<Nmap::XML::Host: 192.168.1.1>, ...]
     #
+    # @example with a block:
+    #   xml = Nmap.scan do |nmap|
+    #     nmap.syn_scan = true
+    #     nmap.ports    = [80, 443]
+    #     nmap.targets  = '192.168.1.*'
+    #   end
+    #   # => #<Nmap::XML: ...>
+    #
     # @see https://rubydoc.info/gems/ruby-nmap/Nmap/Command
     # @see https://rubydoc.info/gems/ruby-nmap/Nmap/XML
     #
     # @api public
     #
     def self.scan(*targets, sudo: nil, **kwargs,&block)
-      if targets.empty?
-        raise(ArgumentError,"must specify at least one target")
-      end
+      nmap = ::Nmap::Command.new(**kwargs,&block)
 
-      nmap = ::Nmap::Command.new(targets: targets, **kwargs,&block)
+      nmap.targets ||= targets
 
       unless nmap.output_xml
         FileUtils.mkdir_p(CACHE_DIR)

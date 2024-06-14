@@ -117,6 +117,13 @@ require 'ronin/nmap'
 
 xml = Ronin::Nmap.scan(syn_scan: true, ports: [80, 443], targets: '192.168.1.*')
 # => #<Nmap::XML: ...>
+
+xml = Ronin::Nmap.scan do |nmap|
+  nmap.syn_scan = true
+  nmap.ports    = [80, 443]
+  nmap.targets  = '192.168.1.*'
+end
+# => #<Nmap::XML: ...>
 ```
 
 Accessesing the nmap XML scan data:

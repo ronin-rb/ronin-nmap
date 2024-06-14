@@ -7,11 +7,27 @@ RSpec.describe Ronin::Nmap do
   describe '.scan' do
     let(:targets) { '192.168.1.*' }
 
-    context 'if tartets is empty' do
-      it 'must raise an ArgumentError' do
-        expect {
-          subject.scan
-        }.to raise_error(ArgumentError, 'must specify at least one target')
+    let(:expected_output_filename) { %r{#{Ronin::Nmap::CACHE_DIR}\/nmap[^.]+\.xml} }
+
+    context 'when targets are given as arguments' do
+      it 'must pass the targets to the `nmap` command' do
+        expect(Kernel).to receive(:system).with({}, 'nmap', '-oX', match(expected_output_filename), targets).and_return(true)
+
+        subject.scan(targets)
+      end
+    end
+
+    context "when targets are not given as arguments" do
+      context "but a block is given" do
+        context "and the targets are set in the block" do
+          it 'must pass the targets to the `nmap` command' do
+            expect(Kernel).to receive(:system).with({}, 'nmap', '-oX', match(expected_output_filename), targets).and_return(true)
+
+            subject.scan do |nmap|
+              nmap.targets = targets
+            end
+          end
+        end
       end
     end
 

@@ -145,17 +145,17 @@ describe Ronin::Nmap::CLI::Commands::New do
       subject.run(path)
     end
 
-    it "must generate a new file containing a new `Ronin::Nmap.scan(...)`" do
+    it "must generate a new file containing a new `Ronin::Nmap.scan`" do
       expect(File.read(path)).to eq(
         <<~RUBY
           #!/usr/bin/env ruby
 
           require 'ronin/nmap'
 
-          xml = Ronin::Nmap.scan(
-            ARGV[0],
-            # ports: [22, 80, 443, 8000..9000],
-            # xml_file: "path/to/nmap.xml"
+          xml = Ronin::Nmap.scan do |nmap|
+            nmap.targets = ARGV[0]
+            # nmap.ports = [22, 80, 443, 8000..9000]
+            # nmap.xml_file = "path/to/nmap.xml"
           )
         RUBY
       )
@@ -238,17 +238,17 @@ describe Ronin::Nmap::CLI::Commands::New do
       context "and when given the '--scanner' option" do
         let(:argv) { super() + %w[--scanner] }
 
-        it "must generate a new file containing a new `Ronin::Nmap.scan(...)` instead" do
+        it "must generate a new file containing a new `Ronin::Nmap.scan` instead" do
           expect(File.read(path)).to eq(
             <<~RUBY
               #!/usr/bin/env ruby
 
               require 'ronin/nmap'
 
-              xml = Ronin::Nmap.scan(
-                ARGV[0],
-                # ports: [22, 80, 443, 8000..9000],
-                # xml_file: "path/to/nmap.xml"
+              xml = Ronin::Nmap.scan do |nmap|
+                nmap.targets = ARGV[0]
+                # nmap.ports = [22, 80, 443, 8000..9000]
+                # nmap.xml_file = "path/to/nmap.xml"
               )
             RUBY
           )
@@ -266,10 +266,10 @@ describe Ronin::Nmap::CLI::Commands::New do
 
             require 'ronin/nmap'
 
-            xml = Ronin::Nmap.scan(
-              ARGV[0],
-              # ports: [22, 80, 443, 8000..9000],
-              # xml_file: "path/to/nmap.xml"
+            xml = Ronin::Nmap.scan do |nmap|
+              nmap.targets = ARGV[0]
+              # nmap.ports = [22, 80, 443, 8000..9000]
+              # nmap.xml_file = "path/to/nmap.xml"
             )
 
             xml.each_host do |host|
@@ -300,10 +300,10 @@ describe Ronin::Nmap::CLI::Commands::New do
 
             require 'ronin/nmap'
 
-            xml = Ronin::Nmap.scan(
-              ARGV[0],
-              # ports: [22, 80, 443, 8000..9000],
-              # xml_file: "path/to/nmap.xml"
+            xml = Ronin::Nmap.scan do |nmap|
+              nmap.targets = ARGV[0]
+              # nmap.ports = [22, 80, 443, 8000..9000]
+              # nmap.xml_file = "path/to/nmap.xml"
             )
 
             Ronin::DB.connect
@@ -317,17 +317,17 @@ describe Ronin::Nmap::CLI::Commands::New do
       let(:file) { 'path/to/nmap.xml' }
       let(:argv) { ['--xml-file', file] }
 
-      it "must add an `xml_file:` keyword argument to `Ronin::Nmap.scan(...)` with the given file" do
+      it "must add an `nmap.xml_file = '...'` line to `Ronin::Nmap.scan` block with the given file" do
         expect(File.read(path)).to eq(
           <<~RUBY
             #!/usr/bin/env ruby
 
             require 'ronin/nmap'
 
-            xml = Ronin::Nmap.scan(
-              ARGV[0],
-              # ports: [22, 80, 443, 8000..9000],
-              xml_file: #{file.inspect}
+            xml = Ronin::Nmap.scan do |nmap|
+              nmap.targets = ARGV[0]
+              # nmap.ports = [22, 80, 443, 8000..9000]
+              nmap.xml_file = #{file.inspect}
             )
           RUBY
         )
@@ -338,17 +338,17 @@ describe Ronin::Nmap::CLI::Commands::New do
       let(:ports) { [22, 80, 443] }
       let(:argv)  { ['--ports', "#{ports.join(',')}"] }
 
-      it "must add an `ports:` keyword argument to `Ronin::Nmap.scan(...)` with an Array of the given port numbers" do
+      it "must add an `nmap.ports = [...]` line to the `Ronin::Nmap.scan` block with an Array of the given port numbers" do
         expect(File.read(path)).to eq(
           <<~RUBY
             #!/usr/bin/env ruby
 
             require 'ronin/nmap'
 
-            xml = Ronin::Nmap.scan(
-              ARGV[0],
-              ports: #{ports.inspect},
-              # xml_file: "path/to/nmap.xml"
+            xml = Ronin::Nmap.scan do |nmap|
+              nmap.targets = ARGV[0]
+              nmap.ports = #{ports.inspect}
+              # nmap.xml_file = "path/to/nmap.xml"
             )
           RUBY
         )
@@ -371,17 +371,17 @@ describe Ronin::Nmap::CLI::Commands::New do
         ['--ports', "#{start_port1}-#{stop_port1},#{start_port2}-#{stop_port2}"]
       end
 
-      it "must add an `ports:` keyword argument to `Ronin::Nmap.scan(...)` with an Array of the given port ranges" do
+      it "must add an `nmap.ports = [...]` line to the `Ronin::Nmap.scan` block with an Array of the given port ranges" do
         expect(File.read(path)).to eq(
           <<~RUBY
             #!/usr/bin/env ruby
 
             require 'ronin/nmap'
 
-            xml = Ronin::Nmap.scan(
-              ARGV[0],
-              ports: #{ports.inspect},
-              # xml_file: "path/to/nmap.xml"
+            xml = Ronin::Nmap.scan do |nmap|
+              nmap.targets = ARGV[0]
+              nmap.ports = #{ports.inspect}
+              # nmap.xml_file = "path/to/nmap.xml"
             )
           RUBY
         )
@@ -408,17 +408,17 @@ describe Ronin::Nmap::CLI::Commands::New do
         ['--ports', "#{port1},#{port2},#{start_port1}-#{stop_port1},#{start_port2}-#{stop_port2}"]
       end
 
-      it "must add an `ports:` keyword argument to `Ronin::Nmap.scan(...)` with an Array of the given port numbers and ranges" do
+      it "must add an `nmap.ports = [...]` line to the `Ronin::Nmap.scan` block with an Array of the given port numbers and ranges" do
         expect(File.read(path)).to eq(
           <<~RUBY
             #!/usr/bin/env ruby
 
             require 'ronin/nmap'
 
-            xml = Ronin::Nmap.scan(
-              ARGV[0],
-              ports: #{ports.inspect},
-              # xml_file: "path/to/nmap.xml"
+            xml = Ronin::Nmap.scan do |nmap|
+              nmap.targets = ARGV[0]
+              nmap.ports = #{ports.inspect}
+              # nmap.xml_file = "path/to/nmap.xml"
             )
           RUBY
         )
@@ -428,17 +428,17 @@ describe Ronin::Nmap::CLI::Commands::New do
     context "when given the '--ports -' option" do
       let(:argv) { %w[--ports -] }
 
-      it "must add an `ports:` keyword argument to `Ronin::Nmap.scan(...)` with '-'" do
+      it "must add an `nmap.ports = [...]` line to the `Ronin::Nmap.scan` block with '-'" do
         expect(File.read(path)).to eq(
           <<~RUBY
             #!/usr/bin/env ruby
 
             require 'ronin/nmap'
 
-            xml = Ronin::Nmap.scan(
-              ARGV[0],
-              ports: "-",
-              # xml_file: "path/to/nmap.xml"
+            xml = Ronin::Nmap.scan do |nmap|
+              nmap.targets = ARGV[0]
+              nmap.ports = "-"
+              # nmap.xml_file = "path/to/nmap.xml"
             )
           RUBY
         )
