@@ -72,11 +72,11 @@ module Ronin
           end
 
           option :printing, desc: 'Adds additional printing of the nmap scan data' do
-            @printing = true
+            @features[:printing] = true
           end
 
           option :import, desc: 'Also import the nmap XML scan data' do
-            @import = true
+            @features[:import] = true
           end
 
           option :xml_file, value: {
@@ -137,6 +137,11 @@ module Ronin
           # @return [Array<String>]
           attr_reader :targets
 
+          # Additional features.
+          #
+          # @return [Hash{Symbol => Boolean}]
+          attr_reader :features
+
           #
           # Initializes the `ronin-nmap new` command.
           #
@@ -148,6 +153,7 @@ module Ronin
 
             @script_type = :scan
             @targets     = []
+            @features    = {}
           end
 
           #

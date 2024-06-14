@@ -33,7 +33,7 @@ xml = Ronin::Nmap.scan(
 <%-   end -%>
 )
 <%- end -%>
-<% if @print -%>
+<% if @features[:print] -%>
 
 xml.each_host do |host|
   puts "[ #{host.ip} ]"
@@ -49,7 +49,7 @@ xml.each_host do |host|
   end
 end
 <%- end -%>
-<%- if @import -%>
+<%- if @features[:import] -%>
 
 Ronin::DB.connect
 Ronin::Nmap::Importer.import(xml)
