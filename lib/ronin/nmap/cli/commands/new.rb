@@ -151,7 +151,7 @@ module Ronin
           def initialize(**kwargs)
             super(**kwargs)
 
-            @script_type = :scan
+            @script_type = :scanner
             @targets     = []
             @features    = {}
           end
