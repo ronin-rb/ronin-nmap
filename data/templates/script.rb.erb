@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require 'ronin/nmap'
+
+<%- if @script_type == :parser -%>
+<%-   if @xml_file %>
+xml = Ronin::Nmap.parse(<%= @xml_file.inspect %>)
+<%-   else -%>
+xml = Ronin::Nmap.parse(ARGV[0])
+<%-   end -%>
+<%- else -%>
+xml = Ronin::Nmap.scan(
+<%-   case @targets.length -%>
+<%-   when 0 -%>
+  ARGV[0],
+<%-   when 1 -%>
+  <%= @targets[0].inspect %>,
+<%-   else -%>
+  <%= @targets.inspect %>,
+<%-   end -%>
+<%-   if @syn_scan -%>
+  syn_scan: true,
+<%-   end -%>
+<%-   if @ports -%>
+  ports: <%= @ports.inspect %>,
+<%-   else -%>
+  # ports: [22, 80, 443, 8000..9000],
+<%-   end -%>
+<%-   if @xml_file -%>
+  xml_file: <%= @xml_file.inspect %>
+<%-   else -%>
+  # xml_file: "path/to/file.xml"
+<%-   end -%>
+)
+<%- end -%>
+<% if @print -%>
+
+xml.each_host do |host|
+  puts "[ #{host.ip} ]"
+
+  host.each_port do |port|
+    puts "  #{port.number}/#{port.protocol}\t#{port.state}\t#{port.service}"
+
+    port.scripts.each do |id,script|
+      puts "    [ #{id} ]"
+
+      script.output.each_line { |line| puts "      #{line}" }
+    end
+  end
+end
+<%- end -%>
+<%- if @import -%>
+
+Ronin::DB.connect
+Ronin::Nmap::Importer.import(xml)
+<%- end -%>

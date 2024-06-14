@@ -26,6 +26,7 @@ generated_files:
  - man/ronin-nmap-dump.1
  - man/ronin-nmap-grep.1
  - man/ronin-nmap-import.1
+ - man/ronin-nmap-new.1
  - man/ronin-nmap-print.1
  - man/ronin-nmap-scan.1
 
