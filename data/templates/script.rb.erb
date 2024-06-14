@@ -3,7 +3,7 @@
 require 'ronin/nmap'
 
 <%- if @script_type == :parser -%>
-<%-   if @xml_file %>
+<%-   if @xml_file -%>
 xml = Ronin::Nmap.parse(<%= @xml_file.inspect %>)
 <%-   else -%>
 xml = Ronin::Nmap.parse(ARGV[0])
@@ -33,7 +33,7 @@ xml = Ronin::Nmap.scan(
 <%-   end -%>
 )
 <%- end -%>
-<% if @features[:print] -%>
+<% if @features[:printing] -%>
 
 xml.each_host do |host|
   puts "[ #{host.ip} ]"
