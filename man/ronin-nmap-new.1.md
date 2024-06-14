@@ -54,7 +54,7 @@ library.
 Generates a new nmap scanner Ruby script that scans `example.com`, ports 22, 80,
 443, and 8000 through 9000:
 
-    $ ronin-nmap new scanner.rb --ports 22,80,443,8000-9000 --target example.com
+    $ ronin-nmap new scanner.rb --target example.com --ports 22,80,443,8000-9000
 
 Generates a new nmap XML parser script that parses `path/to/nmap.xml` and prints
 the scan information:

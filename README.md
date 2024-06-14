@@ -99,7 +99,7 @@ $ ronin-nmap convert scan.xml scan.json
 Generate a new nmap scanner Ruby script:
 
 ```shell
-$ ronin-nmap new scanner.rb --ports 22,80,443,8000-9000 --target example.com
+$ ronin-nmap new scanner.rb --target example.com --ports 22,80,443,8000-9000
 ```
 
 Generate a new nmap XML parser script:
