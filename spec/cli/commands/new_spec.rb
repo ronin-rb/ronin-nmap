@@ -48,6 +48,14 @@ describe Ronin::Nmap::CLI::Commands::New do
       end
     end
 
+    context "when given the '--syn-scan' option" do
+      let(:argv)  { %w[--syn-scan] }
+
+      it "must set #syn_scan to true" do
+        expect(subject.syn_scan).to be(true)
+      end
+    end
+
     context "when given the '--ports PORT,...' option" do
       let(:ports) { [22, 80, 443] }
       let(:argv)  { ['--ports', "#{ports.join(',')}"] }
@@ -153,10 +161,11 @@ describe Ronin::Nmap::CLI::Commands::New do
           require 'ronin/nmap'
 
           xml = Ronin::Nmap.scan do |nmap|
-            nmap.targets = ARGV[0]
-            # nmap.ports = [22, 80, 443, 8000..9000]
             # nmap.xml_file = "path/to/nmap.xml"
-          )
+            # nmap.syn_scan = true
+            # nmap.ports    = [22, 80, 443, 8000..9000]
+            nmap.targets  = ARGV[0]
+          end
         RUBY
       )
     end
@@ -246,10 +255,11 @@ describe Ronin::Nmap::CLI::Commands::New do
               require 'ronin/nmap'
 
               xml = Ronin::Nmap.scan do |nmap|
-                nmap.targets = ARGV[0]
-                # nmap.ports = [22, 80, 443, 8000..9000]
                 # nmap.xml_file = "path/to/nmap.xml"
-              )
+                # nmap.syn_scan = true
+                # nmap.ports    = [22, 80, 443, 8000..9000]
+                nmap.targets  = ARGV[0]
+              end
             RUBY
           )
         end
@@ -267,10 +277,11 @@ describe Ronin::Nmap::CLI::Commands::New do
             require 'ronin/nmap'
 
             xml = Ronin::Nmap.scan do |nmap|
-              nmap.targets = ARGV[0]
-              # nmap.ports = [22, 80, 443, 8000..9000]
               # nmap.xml_file = "path/to/nmap.xml"
-            )
+              # nmap.syn_scan = true
+              # nmap.ports    = [22, 80, 443, 8000..9000]
+              nmap.targets  = ARGV[0]
+            end
 
             xml.each_host do |host|
               puts "[ \#{host.ip} ]"
@@ -301,10 +312,11 @@ describe Ronin::Nmap::CLI::Commands::New do
             require 'ronin/nmap'
 
             xml = Ronin::Nmap.scan do |nmap|
-              nmap.targets = ARGV[0]
-              # nmap.ports = [22, 80, 443, 8000..9000]
               # nmap.xml_file = "path/to/nmap.xml"
-            )
+              # nmap.syn_scan = true
+              # nmap.ports    = [22, 80, 443, 8000..9000]
+              nmap.targets  = ARGV[0]
+            end
 
             Ronin::DB.connect
             Ronin::Nmap::Importer.import(xml)
@@ -325,10 +337,32 @@ describe Ronin::Nmap::CLI::Commands::New do
             require 'ronin/nmap'
 
             xml = Ronin::Nmap.scan do |nmap|
-              nmap.targets = ARGV[0]
-              # nmap.ports = [22, 80, 443, 8000..9000]
               nmap.xml_file = #{file.inspect}
-            )
+              # nmap.syn_scan = true
+              # nmap.ports    = [22, 80, 443, 8000..9000]
+              nmap.targets  = ARGV[0]
+            end
+          RUBY
+        )
+      end
+    end
+
+    context "when given the '--syn-scan' option" do
+      let(:argv)  { %w[--syn-scan] }
+
+      it "must add `nmap.syn_scan = true` line to the `Ronin::Nmap.scan` block" do
+        expect(File.read(path)).to eq(
+          <<~RUBY
+            #!/usr/bin/env ruby
+
+            require 'ronin/nmap'
+
+            xml = Ronin::Nmap.scan do |nmap|
+              # nmap.xml_file = "path/to/nmap.xml"
+              nmap.syn_scan = true
+              # nmap.ports    = [22, 80, 443, 8000..9000]
+              nmap.targets  = ARGV[0]
+            end
           RUBY
         )
       end
@@ -346,10 +380,11 @@ describe Ronin::Nmap::CLI::Commands::New do
             require 'ronin/nmap'
 
             xml = Ronin::Nmap.scan do |nmap|
-              nmap.targets = ARGV[0]
-              nmap.ports = #{ports.inspect}
               # nmap.xml_file = "path/to/nmap.xml"
-            )
+              # nmap.syn_scan = true
+              nmap.ports    = #{ports.inspect}
+              nmap.targets  = ARGV[0]
+            end
           RUBY
         )
       end
@@ -379,10 +414,11 @@ describe Ronin::Nmap::CLI::Commands::New do
             require 'ronin/nmap'
 
             xml = Ronin::Nmap.scan do |nmap|
-              nmap.targets = ARGV[0]
-              nmap.ports = #{ports.inspect}
               # nmap.xml_file = "path/to/nmap.xml"
-            )
+              # nmap.syn_scan = true
+              nmap.ports    = #{ports.inspect}
+              nmap.targets  = ARGV[0]
+            end
           RUBY
         )
       end
@@ -416,10 +452,11 @@ describe Ronin::Nmap::CLI::Commands::New do
             require 'ronin/nmap'
 
             xml = Ronin::Nmap.scan do |nmap|
-              nmap.targets = ARGV[0]
-              nmap.ports = #{ports.inspect}
               # nmap.xml_file = "path/to/nmap.xml"
-            )
+              # nmap.syn_scan = true
+              nmap.ports    = #{ports.inspect}
+              nmap.targets  = ARGV[0]
+            end
           RUBY
         )
       end
@@ -436,10 +473,11 @@ describe Ronin::Nmap::CLI::Commands::New do
             require 'ronin/nmap'
 
             xml = Ronin::Nmap.scan do |nmap|
-              nmap.targets = ARGV[0]
-              nmap.ports = "-"
               # nmap.xml_file = "path/to/nmap.xml"
-            )
+              # nmap.syn_scan = true
+              nmap.ports    = "-"
+              nmap.targets  = ARGV[0]
+            end
           RUBY
         )
       end

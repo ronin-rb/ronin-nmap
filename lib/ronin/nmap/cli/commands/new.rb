@@ -87,6 +87,10 @@ module Ronin
                               @xml_file = file
                             end
 
+          option :syn_scan, desc: 'Enables SYN scanning' do
+            @syn_scan = true
+          end
+
           option :ports, short: '-p',
                          value: {
                            type:  String,
@@ -126,6 +130,11 @@ module Ronin
           #
           # @return [String, nil]
           attr_reader :xml_file
+
+          # Specifies whether to enable SYN scanning.
+          #
+          # @return [Boolean]
+          attr_reader :syn_scan
 
           # The optional ports to scan.
           #

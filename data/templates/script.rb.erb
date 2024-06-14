@@ -10,28 +10,30 @@ xml = Ronin::Nmap.parse(ARGV[0])
 <%-   end -%>
 <%- else -%>
 xml = Ronin::Nmap.scan do |nmap|
-<%-   case @targets.length -%>
-<%-   when 0 -%>
-  nmap.targets = ARGV[0]
-<%-   when 1 -%>
-  nmap.targets = <%= @targets[0].inspect %>
-<%-   else -%>
-  nmap.targets = <%= @targets.inspect %>
-<%-   end -%>
-<%-   if @syn_scan -%>
-  nmap.syn_scan = true
-<%-   end -%>
-<%-   if @ports -%>
-  nmap.ports = <%= @ports.inspect %>
-<%-   else -%>
-  # nmap.ports = [22, 80, 443, 8000..9000]
-<%-   end -%>
 <%-   if @xml_file -%>
   nmap.xml_file = <%= @xml_file.inspect %>
 <%-   else -%>
   # nmap.xml_file = "path/to/nmap.xml"
 <%-   end -%>
-)
+<%-   if @syn_scan -%>
+  nmap.syn_scan = true
+<%-   else -%>
+  # nmap.syn_scan = true
+<%-   end -%>
+<%-   if @ports -%>
+  nmap.ports    = <%= @ports.inspect %>
+<%-   else -%>
+  # nmap.ports    = [22, 80, 443, 8000..9000]
+<%-   end -%>
+<%-   case @targets.length -%>
+<%-   when 0 -%>
+  nmap.targets  = ARGV[0]
+<%-   when 1 -%>
+  nmap.targets  = <%= @targets[0].inspect %>
+<%-   else -%>
+  nmap.targets  = <%= @targets.inspect %>
+<%-   end -%>
+end
 <%- end -%>
 <% if @features[:printing] -%>
 

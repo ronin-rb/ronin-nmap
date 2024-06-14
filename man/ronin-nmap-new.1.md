@@ -38,6 +38,9 @@ library.
 : Parses or writes the scan results to the given XML File.
   Is compatible with both `--parser` and `--scanner`.
 
+`--syn-scan`
+: Enables SYN scanning. Only compatible with the `--scanner` option.
+
 `-p`, `--port` {*PORT* \| \[*PORT1*\]-\[*PORT2*\]}[,...]
 : Specifies the ports to scan. Not compatible with the `--parser` option.
 
