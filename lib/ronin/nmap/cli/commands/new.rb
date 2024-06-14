@@ -165,7 +165,7 @@ module Ronin
           def run(file)
             @directory  = File.dirname(file)
 
-            mkdir @directory unless @directory == '.'
+            mkdir @directory unless File.directory?(@directory)
 
             erb "script.rb.erb", file
             chmod '+x', file
