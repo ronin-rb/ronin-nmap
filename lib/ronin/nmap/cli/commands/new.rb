@@ -41,8 +41,8 @@ module Ronin
         #         --printing                   Adds additional printing of the nmap scan data
         #         --import                     Also import the nmap XML scan data
         #         --xml-file XML_FILE          Sets the XML file to write to or parse
-        #     -p {PORT | [PORT1]-[PORT2]},...  Sets the port range to scan
-        #         --ports
+        #     -p {PORT | [PORT1]-[PORT2]}[,...],
+        #         --ports                      Sets the port range to scan
         #         --target TARGET              Sets the targets to scan (Defaults: ARGV[0])
         #     -h, --help                       Print help information
         #
@@ -90,7 +90,7 @@ module Ronin
           option :ports, short: '-p',
                          value: {
                            type:  String,
-                           usage: '{PORT | [PORT1]-[PORT2]},...'
+                           usage: '{PORT | [PORT1]-[PORT2]}[,...]'
                          },
                          desc: 'Sets the port range to scan' do |ports|
                            @ports = parse_port_range(ports)
