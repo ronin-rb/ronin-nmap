@@ -119,7 +119,7 @@ module Ronin
 
           # The script type.
           #
-          # @return [:scan, :parse]
+          # @return [:scanner, :parser]
           attr_reader :script_type
 
           # The optioanl XML file to write to or parse.
