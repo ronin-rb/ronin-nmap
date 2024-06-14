@@ -155,7 +155,7 @@ describe Ronin::Nmap::CLI::Commands::New do
           xml = Ronin::Nmap.scan(
             ARGV[0],
             # ports: [22, 80, 443, 8000..9000],
-            # xml_file: "path/to/file.xml"
+            # xml_file: "path/to/nmap.xml"
           )
         RUBY
       )
@@ -248,7 +248,7 @@ describe Ronin::Nmap::CLI::Commands::New do
               xml = Ronin::Nmap.scan(
                 ARGV[0],
                 # ports: [22, 80, 443, 8000..9000],
-                # xml_file: "path/to/file.xml"
+                # xml_file: "path/to/nmap.xml"
               )
             RUBY
           )
@@ -269,7 +269,7 @@ describe Ronin::Nmap::CLI::Commands::New do
             xml = Ronin::Nmap.scan(
               ARGV[0],
               # ports: [22, 80, 443, 8000..9000],
-              # xml_file: "path/to/file.xml"
+              # xml_file: "path/to/nmap.xml"
             )
 
             xml.each_host do |host|
@@ -303,7 +303,7 @@ describe Ronin::Nmap::CLI::Commands::New do
             xml = Ronin::Nmap.scan(
               ARGV[0],
               # ports: [22, 80, 443, 8000..9000],
-              # xml_file: "path/to/file.xml"
+              # xml_file: "path/to/nmap.xml"
             )
 
             Ronin::DB.connect
@@ -348,7 +348,7 @@ describe Ronin::Nmap::CLI::Commands::New do
             xml = Ronin::Nmap.scan(
               ARGV[0],
               ports: #{ports.inspect},
-              # xml_file: "path/to/file.xml"
+              # xml_file: "path/to/nmap.xml"
             )
           RUBY
         )
@@ -381,7 +381,7 @@ describe Ronin::Nmap::CLI::Commands::New do
             xml = Ronin::Nmap.scan(
               ARGV[0],
               ports: #{ports.inspect},
-              # xml_file: "path/to/file.xml"
+              # xml_file: "path/to/nmap.xml"
             )
           RUBY
         )
@@ -418,7 +418,7 @@ describe Ronin::Nmap::CLI::Commands::New do
             xml = Ronin::Nmap.scan(
               ARGV[0],
               ports: #{ports.inspect},
-              # xml_file: "path/to/file.xml"
+              # xml_file: "path/to/nmap.xml"
             )
           RUBY
         )
@@ -438,7 +438,7 @@ describe Ronin::Nmap::CLI::Commands::New do
             xml = Ronin::Nmap.scan(
               ARGV[0],
               ports: "-",
-              # xml_file: "path/to/file.xml"
+              # xml_file: "path/to/nmap.xml"
             )
           RUBY
         )
