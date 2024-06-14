@@ -39,6 +39,9 @@ Runs a `ronin-nmap` *COMMAND*.
 *import*
 : Imports an nmap XML file into ronin-db.
 
+*new*
+: Generates a new nmap Ruby script.
+
 *print*
 : Prints the scanned hosts from nmap XML file(s).
 
@@ -51,4 +54,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-[ronin-nmap-completion](ronin-nmap-completion.1.md) [ronin-nmap-convert](ronin-nmap-convert.1.md) [ronin-nmap-dump](ronin-nmap-dump.1.md) [ronin-nmap-import](ronin-nmap-import.1.md) [ronin-nmap-scan](ronin-nmap-scan.1.md)
+[ronin-nmap-completion](ronin-nmap-completion.1.md) [ronin-nmap-convert](ronin-nmap-convert.1.md) [ronin-nmap-dump](ronin-nmap-dump.1.md) [ronin-nmap-import](ronin-nmap-import.1.md) [ronin-nmap-new](ronin-nmap-new.1.md) [ronin-nmap-scan](ronin-nmap-scan.1.md)
