@@ -1,8 +1,8 @@
 name: ronin-nmap
 summary: A Ruby library and CLI for working with nmap.
 description: |
-  ronin-nmap is a Ruby library for working with nmap. ronin-nmap can parse
-  nmap XML, convert nmap XML into JSON or CSV, or import nmap XML into the
+  ronin-nmap is a Ruby library and CLI for working with nmap. ronin-nmap can
+  parse nmap XML, convert nmap XML into JSON or CSV, or import nmap XML into the
   ronin-db database.
 
 license: LGPL-3.0
