@@ -21,6 +21,6 @@
 module Ronin
   module Nmap
     # ronin-nmap version
-    VERSION = '0.1.0.rc1'
+    VERSION = '0.1.0'
   end
 end
