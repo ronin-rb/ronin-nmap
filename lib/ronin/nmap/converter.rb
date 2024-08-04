@@ -18,7 +18,7 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/converters'
+require_relative 'converters'
 
 require 'nmap/xml'
 

@@ -18,7 +18,7 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/root'
+require_relative '../root'
 
 require 'ronin/core/cli/command'
 

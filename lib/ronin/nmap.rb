@@ -18,8 +18,9 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/exceptions'
-require 'ronin/nmap/importer'
+require_relative 'nmap/exceptions'
+require_relative 'nmap/importer'
+
 require 'ronin/core/home'
 require 'nmap/command'
 require 'nmap/xml'

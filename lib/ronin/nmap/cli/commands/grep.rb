@@ -18,7 +18,7 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/cli/command'
+require_relative '../command'
 
 require 'command_kit/colors'
 require 'command_kit/printing/indent'

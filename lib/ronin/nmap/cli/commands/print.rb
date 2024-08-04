@@ -18,8 +18,9 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/cli/command'
-require 'ronin/nmap/cli/filtering_options'
+require_relative '../command'
+require_relative '../filtering_options'
+
 require 'nmap/xml'
 
 module Ronin

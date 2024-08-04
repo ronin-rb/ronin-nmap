@@ -18,7 +18,8 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/importer'
+require_relative '../importer'
+
 require 'ronin/db/cli/database_options'
 require 'ronin/db/cli/printing'
 require 'ronin/core/cli/logging'

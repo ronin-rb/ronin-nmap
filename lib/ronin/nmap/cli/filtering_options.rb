@@ -18,7 +18,7 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/cli/port_list'
+require_relative 'port_list'
 
 module Ronin
   module Nmap

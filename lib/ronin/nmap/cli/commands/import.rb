@@ -18,9 +18,9 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/cli/command'
-require 'ronin/nmap/cli/importable'
-require 'ronin/nmap/importer'
+require_relative '../command'
+require_relative '../importable'
+require_relative '../../importer'
 
 module Ronin
   module Nmap

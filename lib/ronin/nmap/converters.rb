@@ -18,8 +18,8 @@
 # along with ronin-nmap.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/nmap/converters/json'
-require 'ronin/nmap/converters/csv'
+require_relative 'converters/json'
+require_relative 'converters/csv'
 
 module Ronin
   module Nmap
