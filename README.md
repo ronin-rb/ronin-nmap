@@ -216,7 +216,7 @@ gem.add_dependency 'ronin-nmap', '~> 0.1'
 
 ## License
 
-Copyright (c) 2023-2024 Hal Brodigan (postmodern.mod3@gmail.com)
+Copyright (c) 2023-2025 Hal Brodigan (postmodern.mod3@gmail.com)
 
 ronin-nmap is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
