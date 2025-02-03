@@ -33,6 +33,7 @@ generated_files:
 required_ruby_version: ">= 3.0.0"
 
 dependencies:
+  csv: ~> 3.0
   ruby-nmap: ~> 1.0
   # Ronin dependencies:
   ronin-core: ~> 0.2
